@@ -1,0 +1,170 @@
+Sat Mar 23 21:06:36 EDT 2024
+Your job is running on node(s):
+adroit-h11g2
+Working directory:
+/scratch/network/hw8161/CoFiPruning/tasks/eval_cola_0.6
+nvidia-smi output:
+Sat Mar 23 21:06:36 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 545.23.08              Driver Version: 545.23.08    CUDA Version: 12.3     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-PCIE-40GB          On  | 00000000:65:00.0 Off |                    0 |
+| N/A   30C    P0              32W / 250W |      2MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+0.84 seconds for warmup
+Layer 0, heads 9 10 11 pruned.
+Layer 1, heads 5 6 7 8 9 10 11 pruned.
+Layer 2, heads 6 7 8 9 10 11 pruned.
+Layer 3, heads 7 8 9 10 11 pruned.
+Layer 4, heads 11 pruned.
+Layer 5, heads 9 10 11 pruned.
+Layer 6, heads 9 10 11 pruned.
+Layer 7, heads 7 8 9 10 11 pruned.
+Layer 8, heads 9 10 11 pruned.
+Layer 9, heads 4 5 6 7 8 9 10 11 pruned.
+Layer 10, heads 9 10 11 pruned.
+Layer 11, heads 10 11 pruned.
+Layer: 0
+query: torch.Size([576, 766])
+key: torch.Size([576, 766])
+value: torch.Size([576, 766])
+output: torch.Size([766, 576])
+up: torch.Size([890, 766])
+down: torch.Size([766, 890])
+Layer: 1
+query: torch.Size([320, 766])
+key: torch.Size([320, 766])
+value: torch.Size([320, 766])
+output: torch.Size([766, 320])
+up: torch.Size([1001, 766])
+down: torch.Size([766, 1001])
+Layer: 2
+query: torch.Size([384, 766])
+key: torch.Size([384, 766])
+value: torch.Size([384, 766])
+output: torch.Size([766, 384])
+up: torch.Size([1296, 766])
+down: torch.Size([766, 1296])
+Layer: 3
+query: torch.Size([448, 766])
+key: torch.Size([448, 766])
+value: torch.Size([448, 766])
+output: torch.Size([766, 448])
+up: torch.Size([1241, 766])
+down: torch.Size([766, 1241])
+Layer: 4
+query: torch.Size([704, 766])
+key: torch.Size([704, 766])
+value: torch.Size([704, 766])
+output: torch.Size([766, 704])
+up: torch.Size([1279, 766])
+down: torch.Size([766, 1279])
+Layer: 5
+query: torch.Size([576, 766])
+key: torch.Size([576, 766])
+value: torch.Size([576, 766])
+output: torch.Size([766, 576])
+up: torch.Size([1315, 766])
+down: torch.Size([766, 1315])
+Layer: 6
+query: torch.Size([576, 766])
+key: torch.Size([576, 766])
+value: torch.Size([576, 766])
+output: torch.Size([766, 576])
+up: torch.Size([878, 766])
+down: torch.Size([766, 878])
+Layer: 7
+query: torch.Size([448, 766])
+key: torch.Size([448, 766])
+value: torch.Size([448, 766])
+output: torch.Size([766, 448])
+up: torch.Size([767, 766])
+down: torch.Size([766, 767])
+Layer: 8
+query: torch.Size([576, 766])
+key: torch.Size([576, 766])
+value: torch.Size([576, 766])
+output: torch.Size([766, 576])
+up: torch.Size([627, 766])
+down: torch.Size([766, 627])
+Layer: 9
+query: torch.Size([256, 766])
+key: torch.Size([256, 766])
+value: torch.Size([256, 766])
+output: torch.Size([766, 256])
+up None
+down None
+Layer: 10
+query: torch.Size([576, 766])
+key: torch.Size([576, 766])
+value: torch.Size([576, 766])
+output: torch.Size([766, 576])
+up None
+down None
+Layer: 11
+query: torch.Size([640, 766])
+key: torch.Size([640, 766])
+value: torch.Size([640, 766])
+output: torch.Size([766, 640])
+up: torch.Size([367, 766])
+down: torch.Size([766, 367])
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 0: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 1: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 2: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 3: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 4: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 5: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 6: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 7: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 8: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 9: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 10: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 11: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 12: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 13: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 14: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 15: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 16: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 17: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 18: There are 9 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence, idx.
+Round 19: There are 9 batches in the dataset.
+Task: cola
+Model path: /scratch/network/hw8161/CoFiPruning/out/CoLA/CoFi/CoLA_sparsity0.6/FT-lr3e-5
+Model size: 33511293
+Sparsity: 0.606
+matthews_correlation: 0.5848
+seconds/example: 0.000753
+

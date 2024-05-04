@@ -1,0 +1,140 @@
+Fri May  3 11:12:14 EDT 2024
+Your job is running on node(s):
+adroit-h11g2
+Working directory:
+/scratch/network/hw8161/CoFiPruning/tasks/qnli_mod2_0.95
+nvidia-smi output:
+Fri May  3 11:12:14 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 545.23.08              Driver Version: 545.23.08    CUDA Version: 12.3     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-PCIE-40GB          On  | 00000000:E3:00.0 Off |                    0 |
+| N/A   31C    P0              38W / 250W |      2MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+0.93 seconds for warmup
+Layer 0, heads 3 4 5 6 7 8 9 10 11 pruned.
+Layer 1, heads 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 2, heads 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 3, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 4, heads 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 5, heads 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 6, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 7, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 8, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 9, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 10, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 11, heads 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer: 0
+query: torch.Size([192, 766])
+key: torch.Size([192, 766])
+value: torch.Size([192, 766])
+output: torch.Size([766, 192])
+up: torch.Size([401, 766])
+down: torch.Size([766, 401])
+Layer: 1
+query: torch.Size([128, 766])
+key: torch.Size([128, 766])
+value: torch.Size([128, 766])
+output: torch.Size([766, 128])
+up: torch.Size([401, 766])
+down: torch.Size([766, 401])
+Layer: 2
+query: torch.Size([128, 766])
+key: torch.Size([128, 766])
+value: torch.Size([128, 766])
+output: torch.Size([766, 128])
+up None
+down None
+Layer: 3
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 4
+query: torch.Size([128, 766])
+key: torch.Size([128, 766])
+value: torch.Size([128, 766])
+output: torch.Size([766, 128])
+up None
+down None
+Layer: 5
+query: torch.Size([128, 766])
+key: torch.Size([128, 766])
+value: torch.Size([128, 766])
+output: torch.Size([766, 128])
+up None
+down None
+Layer: 6
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 7
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 8
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 9
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 10
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 11
+query: torch.Size([128, 766])
+key: torch.Size([128, 766])
+value: torch.Size([128, 766])
+output: torch.Size([766, 128])
+up None
+down None
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, question, sentence.
+Round 0: There are 43 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, question, sentence.
+Round 1: There are 43 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, question, sentence.
+Round 2: There are 43 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, question, sentence.
+Round 3: There are 43 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, question, sentence.
+Round 4: There are 43 batches in the dataset.
+Task: qnli
+Model path: /scratch/network/hw8161/CoFiPruning/out/QNLI/CoFi_mod_2/QNLI_sparsity0.95/FT-lr3e-5
+Model size: 3824130
+Sparsity: 0.955
+accuracy: 0.8521
+seconds/example: 0.000195
+

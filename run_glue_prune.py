@@ -49,6 +49,7 @@ def main():
         # let's parse it to get our arguments.
         model_args, data_args, training_args, additional_args = parser.parse_json_file(
             json_file=os.path.abspath(sys.argv[1]))
+        print(sys.argv)
     else:
         model_args, data_args, training_args, additional_args = parser.parse_args_into_dataclasses()
     
@@ -172,12 +173,14 @@ def main():
         revision=model_args.model_revision,
         use_auth_token=True if model_args.use_auth_token else None,
     )
+    
     tokenizer = AutoTokenizer.from_pretrained(
         model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,
         cache_dir=model_args.cache_dir,
         use_fast=model_args.use_fast_tokenizer,
         revision=model_args.model_revision,
         use_auth_token=True if model_args.use_auth_token else None,
+        local_files_only=True,
     )
 
     # set up configuration for distillation
@@ -217,10 +220,16 @@ def main():
     zs = None
     
     if additional_args.pretrained_pruned_model is not None:
-        zs = load_zs(additional_args.pretrained_pruned_model)
-        model = load_model(additional_args.pretrained_pruned_model, Model, zs)
-        print(
-            f"Model Size after pruning: {calculate_parameters(model)}")
+        if additional_args.pruning_type is not None:
+            zs = load_zs(additional_args.pretrained_pruned_model)
+            model = load_model(additional_args.pretrained_pruned_model, Model, zs)
+            print(
+                f"Model Size after pruning: {calculate_parameters(model)}")
+        else:
+            zs = load_zs(os.path.join(additional_args.pretrained_pruned_model, "best"))
+            model = load_model(os.path.join(additional_args.pretrained_pruned_model, "best"), Model, zs)
+            print(
+                f"Model Size after pruning: {calculate_parameters(model)}")
 
     l0_module = None
     if additional_args.pruning_type is not None:

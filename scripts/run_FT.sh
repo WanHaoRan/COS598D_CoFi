@@ -5,17 +5,17 @@
 glue_low=(MRPC RTE STS-B CoLA)
 glue_high=(MNLI QQP QNLI SST-2)
 
-proj_dir=$n/space2
+proj_dir=/scratch/network/hw8161/CoFiPruning
 
-code_dir=${proj_dir}/CoFiPruning
+code_dir=${proj_dir}
 
 
 # task and data
 task_name=$1
-data_dir=$proj_dir/data/glue_data/${task_name}
+# data_dir=$proj_dir/data/glue_data/${task_name}
 
 # pretrain model
-model_name_or_path=bert-base-uncased
+model_name_or_path=$3
 
 # logging & saving
 logging_steps=100
@@ -32,7 +32,7 @@ fi
 max_seq_length=128
 batch_size=32
 learning_rate=2e-5
-epochs=5
+epochs=20
 
 # seed
 seed=57
@@ -40,7 +40,7 @@ seed=57
 # output directory
 ex_name_suffix=$2
 ex_name=${task_name}_${ex_name_suffix}
-output_dir=$proj_dir/out-test/${task_name}/${ex_name}
+output_dir=$proj_dir/out_finetune/${task_name}/${ex_name}
 mkdir -p $output_dir
 pruning_type=None
 
@@ -48,7 +48,6 @@ python3 $code_dir/run_glue_prune.py \
 	   --output_dir ${output_dir} \
 	   --logging_steps ${logging_steps} \
 	   --task_name ${task_name} \
-	   --data_dir ${data_dir} \
 	   --model_name_or_path ${model_name_or_path} \
 	   --ex_name ${ex_name} \
 	   --do_train \

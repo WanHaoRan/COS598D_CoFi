@@ -238,7 +238,7 @@ if __name__ == '__main__':
     bs = 128
 
     tokenizer = AutoTokenizer.from_pretrained(
-        model_name_or_path, use_fast=True if task_name == "squad" else False, padding_side="right", truncation_size="right")
+        model_name_or_path, use_fast=True if task_name == "squad" else False, padding_side="right", truncation_size="right", local_files_only=True)
 
     if task_name != "squad":
         # data_args = DataTrainingArguments(task_name=task_name,
@@ -282,14 +282,14 @@ if __name__ == '__main__':
     else:
         model_class = CoFiBertForSequenceClassification
 
-    zs = load_zs(model_name_or_path)
+    zs = load_zs(os.path.join(model_name_or_path, "best"))
 
     # for compressed models
     if zs is None:
-        model = model_class.from_pretrained(model_name_or_path)
+        model = model_class.from_pretrained(os.path.join(model_name_or_path, "best"))
     # for full models with compression vectors zs
     else:
-        model = load_model(model_name_or_path, model_class, zs)
+        model = load_model(os.path.join(model_name_or_path, "best"), model_class, zs)
 
     model = model.cuda()
     model = model.eval()

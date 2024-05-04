@@ -18,7 +18,7 @@ class ModelArguments:
         default=None, metadata={"help": "Pretrained tokenizer name or path if not the same as model_name"}
     )
     cache_dir: Optional[str] = field(
-        default=None,
+        default="/scratch/network/hw8161/.cache/",
         metadata={
             "help": "Where do you want to store the pretrained models downloaded from huggingface.co"},
     )

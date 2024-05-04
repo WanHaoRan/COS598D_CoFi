@@ -1,0 +1,2763 @@
+Wed May  1 15:45:38 EDT 2024
+Your job is running on node(s):
+adroit-h11g2
+Working directory:
+/scratch/network/hw8161/CoFiPruning/tasks/mrpc_mod2_0.6
+nvidia-smi output:
+Wed May  1 15:45:38 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 545.23.08              Driver Version: 545.23.08    CUDA Version: 12.3     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-PCIE-40GB          On  | 00000000:CA:00.0 Off |                    0 |
+| N/A   31C    P0              36W / 250W |      2MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+Using the `WAND_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).
+05/01/2024 15:45:44 - WARNING - __main__ - Process rank: -1, device: cuda:0, n_gpu: 1distributed training: False, 16-bits training: False
+05/01/2024 15:45:44 - INFO - __main__ - Training/evaluation parameters TrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+bf16=False,
+bf16_full_eval=False,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=False,
+do_train=True,
+eval_accumulation_steps=None,
+eval_steps=50,
+evaluation_strategy=IntervalStrategy.STEPS,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=3e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=-1,
+log_level=-1,
+log_level_replica=-1,
+log_on_each_node=True,
+logging_dir=/scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5/runs/May01_15-45-44_adroit-h11g2,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=100,
+logging_strategy=IntervalStrategy.STEPS,
+lr_scheduler_type=SchedulerType.LINEAR,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=20.0,
+optim=OptimizerNames.ADAMW_HF,
+output_dir=/scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5,
+overwrite_output_dir=True,
+past_index=-1,
+per_device_eval_batch_size=32,
+per_device_train_batch_size=64,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+remove_unused_columns=True,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=/scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5,
+save_on_each_node=False,
+save_steps=0,
+save_strategy=IntervalStrategy.STEPS,
+save_total_limit=None,
+seed=57,
+sharded_ddp=[],
+skip_memory_metrics=True,
+tf32=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_legacy_prediction_loop=False,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.0,
+xpu_backend=None,
+)
+05/01/2024 15:45:44 - INFO - __main__ - Model Arguments:
+05/01/2024 15:45:44 - INFO - __main__ - model_name_or_path = bert-base-uncased
+05/01/2024 15:45:44 - INFO - __main__ - config_name = None
+05/01/2024 15:45:44 - INFO - __main__ - tokenizer_name = None
+05/01/2024 15:45:44 - INFO - __main__ - cache_dir = /scratch/network/hw8161/.cache/
+05/01/2024 15:45:44 - INFO - __main__ - use_fast_tokenizer = True
+05/01/2024 15:45:44 - INFO - __main__ - model_revision = main
+05/01/2024 15:45:44 - INFO - __main__ - use_auth_token = False
+05/01/2024 15:45:44 - INFO - __main__ - Data Arguments:
+05/01/2024 15:45:44 - INFO - __main__ - task_name = mrpc
+05/01/2024 15:45:44 - INFO - __main__ - dataset_name = None
+05/01/2024 15:45:44 - INFO - __main__ - t_name = None
+05/01/2024 15:45:44 - INFO - __main__ - dataset_config_name = None
+05/01/2024 15:45:44 - INFO - __main__ - max_seq_length = 128
+05/01/2024 15:45:44 - INFO - __main__ - overwrite_cache = False
+05/01/2024 15:45:44 - INFO - __main__ - pad_to_max_length = True
+05/01/2024 15:45:44 - INFO - __main__ - max_train_samples = None
+05/01/2024 15:45:44 - INFO - __main__ - max_eval_samples = None
+05/01/2024 15:45:44 - INFO - __main__ - max_predict_samples = None
+05/01/2024 15:45:44 - INFO - __main__ - train_file = None
+05/01/2024 15:45:44 - INFO - __main__ - validation_file = None
+05/01/2024 15:45:44 - INFO - __main__ - test_file = None
+05/01/2024 15:45:44 - INFO - __main__ - Training Arguments:
+05/01/2024 15:45:44 - INFO - __main__ - output_dir = /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5
+05/01/2024 15:45:44 - INFO - __main__ - overwrite_output_dir = True
+05/01/2024 15:45:44 - INFO - __main__ - do_train = True
+05/01/2024 15:45:44 - INFO - __main__ - do_eval = True
+05/01/2024 15:45:44 - INFO - __main__ - do_predict = False
+05/01/2024 15:45:44 - INFO - __main__ - evaluation_strategy = IntervalStrategy.STEPS
+05/01/2024 15:45:44 - INFO - __main__ - prediction_loss_only = False
+05/01/2024 15:45:44 - INFO - __main__ - per_device_train_batch_size = 64
+05/01/2024 15:45:44 - INFO - __main__ - per_device_eval_batch_size = 32
+05/01/2024 15:45:44 - INFO - __main__ - per_gpu_train_batch_size = None
+05/01/2024 15:45:44 - INFO - __main__ - per_gpu_eval_batch_size = None
+05/01/2024 15:45:44 - INFO - __main__ - gradient_accumulation_steps = 1
+05/01/2024 15:45:44 - INFO - __main__ - eval_accumulation_steps = None
+05/01/2024 15:45:44 - INFO - __main__ - learning_rate = 3e-05
+05/01/2024 15:45:44 - INFO - __main__ - weight_decay = 0.0
+05/01/2024 15:45:44 - INFO - __main__ - adam_beta1 = 0.9
+05/01/2024 15:45:44 - INFO - __main__ - adam_beta2 = 0.999
+05/01/2024 15:45:44 - INFO - __main__ - adam_epsilon = 1e-08
+05/01/2024 15:45:44 - INFO - __main__ - max_grad_norm = 1.0
+05/01/2024 15:45:44 - INFO - __main__ - num_train_epochs = 20.0
+05/01/2024 15:45:44 - INFO - __main__ - max_steps = -1
+05/01/2024 15:45:44 - INFO - __main__ - lr_scheduler_type = SchedulerType.LINEAR
+05/01/2024 15:45:44 - INFO - __main__ - warmup_ratio = 0.0
+05/01/2024 15:45:44 - INFO - __main__ - warmup_steps = 0
+05/01/2024 15:45:44 - INFO - __main__ - log_level = -1
+05/01/2024 15:45:44 - INFO - __main__ - log_level_replica = -1
+05/01/2024 15:45:44 - INFO - __main__ - log_on_each_node = True
+05/01/2024 15:45:44 - INFO - __main__ - logging_dir = /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5/runs/May01_15-45-44_adroit-h11g2
+05/01/2024 15:45:44 - INFO - __main__ - logging_strategy = IntervalStrategy.STEPS
+05/01/2024 15:45:44 - INFO - __main__ - logging_first_step = False
+05/01/2024 15:45:44 - INFO - __main__ - logging_steps = 100
+05/01/2024 15:45:44 - INFO - __main__ - logging_nan_inf_filter = True
+05/01/2024 15:45:44 - INFO - __main__ - save_strategy = IntervalStrategy.STEPS
+05/01/2024 15:45:44 - INFO - __main__ - save_steps = 0
+05/01/2024 15:45:44 - INFO - __main__ - save_total_limit = None
+05/01/2024 15:45:44 - INFO - __main__ - save_on_each_node = False
+05/01/2024 15:45:44 - INFO - __main__ - no_cuda = False
+05/01/2024 15:45:44 - INFO - __main__ - seed = 57
+05/01/2024 15:45:44 - INFO - __main__ - bf16 = False
+05/01/2024 15:45:44 - INFO - __main__ - fp16 = False
+05/01/2024 15:45:44 - INFO - __main__ - fp16_opt_level = O1
+05/01/2024 15:45:44 - INFO - __main__ - half_precision_backend = auto
+05/01/2024 15:45:44 - INFO - __main__ - bf16_full_eval = False
+05/01/2024 15:45:44 - INFO - __main__ - fp16_full_eval = False
+05/01/2024 15:45:44 - INFO - __main__ - tf32 = None
+05/01/2024 15:45:44 - INFO - __main__ - local_rank = -1
+05/01/2024 15:45:44 - INFO - __main__ - xpu_backend = None
+05/01/2024 15:45:44 - INFO - __main__ - tpu_num_cores = None
+05/01/2024 15:45:44 - INFO - __main__ - tpu_metrics_debug = False
+05/01/2024 15:45:44 - INFO - __main__ - debug = []
+05/01/2024 15:45:44 - INFO - __main__ - dataloader_drop_last = False
+05/01/2024 15:45:44 - INFO - __main__ - eval_steps = 50
+05/01/2024 15:45:44 - INFO - __main__ - dataloader_num_workers = 0
+05/01/2024 15:45:44 - INFO - __main__ - past_index = -1
+05/01/2024 15:45:44 - INFO - __main__ - run_name = /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5
+05/01/2024 15:45:44 - INFO - __main__ - disable_tqdm = False
+05/01/2024 15:45:44 - INFO - __main__ - remove_unused_columns = True
+05/01/2024 15:45:44 - INFO - __main__ - label_names = None
+05/01/2024 15:45:44 - INFO - __main__ - load_best_model_at_end = False
+05/01/2024 15:45:44 - INFO - __main__ - metric_for_best_model = None
+05/01/2024 15:45:44 - INFO - __main__ - greater_is_better = None
+05/01/2024 15:45:44 - INFO - __main__ - ignore_data_skip = False
+05/01/2024 15:45:44 - INFO - __main__ - sharded_ddp = []
+05/01/2024 15:45:44 - INFO - __main__ - deepspeed = None
+05/01/2024 15:45:44 - INFO - __main__ - label_smoothing_factor = 0.0
+05/01/2024 15:45:44 - INFO - __main__ - optim = OptimizerNames.ADAMW_HF
+05/01/2024 15:45:44 - INFO - __main__ - adafactor = False
+05/01/2024 15:45:44 - INFO - __main__ - group_by_length = False
+05/01/2024 15:45:44 - INFO - __main__ - length_column_name = length
+05/01/2024 15:45:44 - INFO - __main__ - report_to = []
+05/01/2024 15:45:44 - INFO - __main__ - ddp_find_unused_parameters = None
+05/01/2024 15:45:44 - INFO - __main__ - ddp_bucket_cap_mb = None
+05/01/2024 15:45:44 - INFO - __main__ - dataloader_pin_memory = True
+05/01/2024 15:45:44 - INFO - __main__ - skip_memory_metrics = True
+05/01/2024 15:45:44 - INFO - __main__ - use_legacy_prediction_loop = False
+05/01/2024 15:45:44 - INFO - __main__ - push_to_hub = False
+05/01/2024 15:45:44 - INFO - __main__ - resume_from_checkpoint = None
+05/01/2024 15:45:44 - INFO - __main__ - hub_model_id = None
+05/01/2024 15:45:44 - INFO - __main__ - hub_strategy = HubStrategy.EVERY_SAVE
+05/01/2024 15:45:44 - INFO - __main__ - hub_token = None
+05/01/2024 15:45:44 - INFO - __main__ - gradient_checkpointing = False
+05/01/2024 15:45:44 - INFO - __main__ - fp16_backend = auto
+05/01/2024 15:45:44 - INFO - __main__ - push_to_hub_model_id = None
+05/01/2024 15:45:44 - INFO - __main__ - push_to_hub_organization = None
+05/01/2024 15:45:44 - INFO - __main__ - push_to_hub_token = None
+05/01/2024 15:45:44 - INFO - __main__ - mp_parameters = 
+05/01/2024 15:45:44 - INFO - __main__ - _n_gpu = 1
+05/01/2024 15:45:44 - INFO - __main__ - __cached__setup_devices = cuda:0
+05/01/2024 15:45:44 - INFO - __main__ - Additional Arguments:
+05/01/2024 15:45:44 - INFO - __main__ - test = False
+05/01/2024 15:45:44 - INFO - __main__ - ex_name = MRPC_sparsity0.6
+05/01/2024 15:45:44 - INFO - __main__ - pruning_type = None
+05/01/2024 15:45:44 - INFO - __main__ - reg_learning_rate = 0.01
+05/01/2024 15:45:44 - INFO - __main__ - scheduler_type = none
+05/01/2024 15:45:44 - INFO - __main__ - freeze_embeddings = True
+05/01/2024 15:45:44 - INFO - __main__ - pretrained_pruned_model = /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6
+05/01/2024 15:45:44 - INFO - __main__ - droprate_init = 0.5
+05/01/2024 15:45:44 - INFO - __main__ - temperature = 0.6666666666666666
+05/01/2024 15:45:44 - INFO - __main__ - prepruning_finetune_epochs = 4
+05/01/2024 15:45:44 - INFO - __main__ - lagrangian_warmup_epochs = 20
+05/01/2024 15:45:44 - INFO - __main__ - target_sparsity = 0.6
+05/01/2024 15:45:44 - INFO - __main__ - sparsity_epsilon = 0
+05/01/2024 15:45:44 - INFO - __main__ - distillation_path = Intel/bert-base-uncased-mrpc
+05/01/2024 15:45:44 - INFO - __main__ - do_distill = True
+05/01/2024 15:45:44 - INFO - __main__ - do_layer_distill = True
+05/01/2024 15:45:44 - INFO - __main__ - layer_distill_version = 4
+05/01/2024 15:45:44 - INFO - __main__ - distill_loss_alpha = 0.9
+05/01/2024 15:45:44 - INFO - __main__ - distill_ce_loss_alpha = 0.1
+05/01/2024 15:45:44 - INFO - __main__ - distill_temp = 2.0
+05/01/2024 15:45:46 - INFO - datasets.builder - Overwrite dataset info from restored data version.
+05/01/2024 15:45:46 - INFO - datasets.info - Loading Dataset info from /scratch/network/hw8161/.cache/glue/mrpc/1.0.0/a420f5e518f42454003587c47467370329f9fc0c6508d1ae0c45b58ea266a353
+05/01/2024 15:45:46 - WARNING - datasets.builder - Reusing dataset glue (/scratch/network/hw8161/.cache/glue/mrpc/1.0.0/a420f5e518f42454003587c47467370329f9fc0c6508d1ae0c45b58ea266a353)
+05/01/2024 15:45:46 - INFO - datasets.info - Loading Dataset info from /scratch/network/hw8161/.cache/glue/mrpc/1.0.0/a420f5e518f42454003587c47467370329f9fc0c6508d1ae0c45b58ea266a353
+  0%|          | 0/3 [00:00<?, ?it/s]100%|██████████| 3/3 [00:00<00:00, 641.17it/s]
+[INFO|configuration_utils.py:648] 2024-05-01 15:45:46,070 >> loading configuration file https://huggingface.co/bert-base-uncased/resolve/main/config.json from cache at /scratch/network/hw8161/.cache/3c61d016573b14f7f008c02c4e51a366c67ab274726fe2910691e2a761acf43e.37395cee442ab11005bcd270f3c34464dc1704b715b5d7d52b1a461abe3b9e4e
+[INFO|configuration_utils.py:684] 2024-05-01 15:45:46,071 >> Model config BertConfig {
+  "_name_or_path": "bert-base-uncased",
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "finetuning_task": "mrpc",
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.17.0",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+[INFO|configuration_utils.py:648] 2024-05-01 15:45:46,073 >> loading configuration file https://huggingface.co/bert-base-uncased/resolve/main/config.json from cache at /scratch/network/hw8161/.cache/3c61d016573b14f7f008c02c4e51a366c67ab274726fe2910691e2a761acf43e.37395cee442ab11005bcd270f3c34464dc1704b715b5d7d52b1a461abe3b9e4e
+[INFO|configuration_utils.py:684] 2024-05-01 15:45:46,073 >> Model config BertConfig {
+  "_name_or_path": "bert-base-uncased",
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.17.0",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+[INFO|tokenization_utils_base.py:1766] 2024-05-01 15:45:46,077 >> Can't load following files from cache: ['added_tokens_file', 'special_tokens_map_file'] and cannot check if these files are necessary for the tokenizer to operate.
+[INFO|tokenization_utils_base.py:1786] 2024-05-01 15:45:46,077 >> loading file https://huggingface.co/bert-base-uncased/resolve/main/vocab.txt from cache at /scratch/network/hw8161/.cache/45c3f7a79a80e1cf0a489e5c62b43f173c15db47864303a55d623bb3c96f72a5.d789d64ebfe299b0e416afc4a169632f903f693095b4629a7ea271d5a0cf2c99
+[INFO|tokenization_utils_base.py:1786] 2024-05-01 15:45:46,077 >> loading file https://huggingface.co/bert-base-uncased/resolve/main/tokenizer.json from cache at /scratch/network/hw8161/.cache/534479488c54aeaf9c3406f647aa2ec13648c06771ffe269edabebd4c412da1d.7f2721073f19841be16f41b0a70b600ca6b880c8f3df6f3535cbc704371bdfa4
+[INFO|tokenization_utils_base.py:1786] 2024-05-01 15:45:46,077 >> loading file https://huggingface.co/bert-base-uncased/resolve/main/tokenizer_config.json from cache at /scratch/network/hw8161/.cache/c1d7f0a763fb63861cc08553866f1fc3e5a6f4f07621be277452d26d71303b7e.76ea01b4b85ac16e2cec55c398cba7a943d89ab21dfdd973f6630a152e4b9aed
+[INFO|configuration_utils.py:648] 2024-05-01 15:45:46,080 >> loading configuration file https://huggingface.co/bert-base-uncased/resolve/main/config.json from cache at /scratch/network/hw8161/.cache/3c61d016573b14f7f008c02c4e51a366c67ab274726fe2910691e2a761acf43e.37395cee442ab11005bcd270f3c34464dc1704b715b5d7d52b1a461abe3b9e4e
+[INFO|configuration_utils.py:684] 2024-05-01 15:45:46,080 >> Model config BertConfig {
+  "_name_or_path": "bert-base-uncased",
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "transformers_version": "4.17.0",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+Layer 0, heads  pruned.
+Layer 1, heads  pruned.
+Layer 2, heads  pruned.
+Layer 3, heads  pruned.
+Layer 4, heads  pruned.
+Layer 5, heads  pruned.
+Layer 6, heads  pruned.
+Layer 7, heads  pruned.
+Layer 8, heads  pruned.
+Layer 9, heads  pruned.
+Layer 10, heads  pruned.
+Layer 11, heads  pruned.
+Layer: 0
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 1
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 2
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 3
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 4
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 5
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 6
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 7
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 8
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 9
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 10
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 11
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer 0, heads  pruned.
+Layer 1, heads  pruned.
+Layer 2, heads  pruned.
+Layer 3, heads  pruned.
+Layer 4, heads  pruned.
+Layer 5, heads  pruned.
+Layer 6, heads  pruned.
+Layer 7, heads  pruned.
+Layer 8, heads  pruned.
+Layer 9, heads  pruned.
+Layer 10, heads  pruned.
+Layer 11, heads  pruned.
+layer transformation torch.Size([768, 768])
+Layer: 0
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 1
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 2
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 3
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 4
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 5
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 6
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 7
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 8
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 9
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 10
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 11
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+05/01/2024 15:45:54 - INFO - __main__ - CoFiBertForSequenceClassification(
+  (bert): CoFiBertModel(
+    (embeddings): CoFiBertEmbeddings(
+      (word_embeddings): Embedding(30522, 768, padding_idx=0)
+      (position_embeddings): Embedding(512, 768)
+      (token_type_embeddings): Embedding(2, 768)
+      (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+    (encoder): CoFiBertEncoder(
+      (layer): ModuleList(
+        (0): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (1): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (2): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (3): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (4): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (5): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (6): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (7): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (8): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (9): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (10): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+        (11): CoFiBertLayer(
+          (attention): CoFiBertAttention(
+            (self): CoFiBertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): CoFiBertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): CoFiBertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): CoFiLayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (pooler): BertPooler(
+      (dense): Linear(in_features=768, out_features=768, bias=True)
+      (activation): Tanh()
+    )
+  )
+  (dropout): Dropout(p=0.1, inplace=False)
+  (classifier): Linear(in_features=768, out_features=2, bias=True)
+  (layer_transformation): Linear(in_features=768, out_features=768, bias=True)
+)
+05/01/2024 15:45:54 - INFO - __main__ - Model size: 85054464
+[INFO|configuration_utils.py:646] 2024-05-01 15:45:55,031 >> loading configuration file /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/best/config.json
+[INFO|configuration_utils.py:684] 2024-05-01 15:45:55,032 >> Model config BertConfig {
+  "_name_or_path": "/scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/best",
+  "architectures": [
+    "CoFiBertForSequenceClassification"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "do_layer_distill": true,
+  "finetuning_task": "mrpc",
+  "gradient_checkpointing": false,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "not_equivalent",
+    "1": "equivalent"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "label2id": {
+    "equivalent": 1,
+    "not_equivalent": 0
+  },
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "output_attentions": true,
+  "output_hidden_states": true,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "pruned_heads": {
+    "0": [],
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": [],
+    "11": []
+  },
+  "torch_dtype": "float32",
+  "transformers_version": "4.17.0",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 30522
+}
+
+Layer 0, heads  pruned.
+Layer 1, heads  pruned.
+Layer 2, heads  pruned.
+Layer 3, heads  pruned.
+Layer 4, heads  pruned.
+Layer 5, heads  pruned.
+Layer 6, heads  pruned.
+Layer 7, heads  pruned.
+Layer 8, heads  pruned.
+Layer 9, heads  pruned.
+Layer 10, heads  pruned.
+Layer 11, heads  pruned.
+layer transformation torch.Size([768, 768])
+Layer: 0
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 1
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 2
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 3
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 4
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 5
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 6
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 7
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 8
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 9
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 10
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Layer: 11
+query: torch.Size([768, 768])
+key: torch.Size([768, 768])
+value: torch.Size([768, 768])
+output: torch.Size([768, 768])
+up: torch.Size([3072, 768])
+down: torch.Size([768, 3072])
+Load weights from /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/best
+Model Size before pruning: 85054464
+Layer 0, heads  pruned.
+Layer 1, heads 3 pruned.
+Layer 2, heads 8 pruned.
+Layer 3, heads  pruned.
+Layer 4, heads  pruned.
+Layer 5, heads 6 pruned.
+Layer 6, heads 2 3 10 pruned.
+Layer 7, heads 1 3 6 7 pruned.
+Layer 8, heads 0 3 4 pruned.
+Layer 9, heads 1 3 4 pruned.
+Layer 10, heads 1 5 6 8 10 11 pruned.
+Layer 11, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+layer transformation torch.Size([768, 766])
+Layer: 0
+query: torch.Size([768, 766])
+key: torch.Size([768, 766])
+value: torch.Size([768, 766])
+output: torch.Size([766, 768])
+up: torch.Size([1194, 766])
+down: torch.Size([766, 1194])
+Layer: 1
+query: torch.Size([704, 766])
+key: torch.Size([704, 766])
+value: torch.Size([704, 766])
+output: torch.Size([766, 704])
+up: torch.Size([1209, 766])
+down: torch.Size([766, 1209])
+Layer: 2
+query: torch.Size([704, 766])
+key: torch.Size([704, 766])
+value: torch.Size([704, 766])
+output: torch.Size([766, 704])
+up: torch.Size([1338, 766])
+down: torch.Size([766, 1338])
+Layer: 3
+query: torch.Size([768, 766])
+key: torch.Size([768, 766])
+value: torch.Size([768, 766])
+output: torch.Size([766, 768])
+up: torch.Size([1091, 766])
+down: torch.Size([766, 1091])
+Layer: 4
+query: torch.Size([768, 766])
+key: torch.Size([768, 766])
+value: torch.Size([768, 766])
+output: torch.Size([766, 768])
+up: torch.Size([1151, 766])
+down: torch.Size([766, 1151])
+Layer: 5
+query: torch.Size([704, 766])
+key: torch.Size([704, 766])
+value: torch.Size([704, 766])
+output: torch.Size([766, 704])
+up: torch.Size([1104, 766])
+down: torch.Size([766, 1104])
+Layer: 6
+query: torch.Size([576, 766])
+key: torch.Size([576, 766])
+value: torch.Size([576, 766])
+output: torch.Size([766, 576])
+up None
+down None
+Layer: 7
+query: torch.Size([512, 766])
+key: torch.Size([512, 766])
+value: torch.Size([512, 766])
+output: torch.Size([766, 512])
+up None
+down None
+Layer: 8
+query: torch.Size([576, 766])
+key: torch.Size([576, 766])
+value: torch.Size([576, 766])
+output: torch.Size([766, 576])
+up: torch.Size([410, 766])
+down: torch.Size([766, 410])
+Layer: 9
+query: torch.Size([576, 766])
+key: torch.Size([576, 766])
+value: torch.Size([576, 766])
+output: torch.Size([766, 576])
+up None
+down None
+Layer: 10
+query: torch.Size([384, 766])
+key: torch.Size([384, 766])
+value: torch.Size([384, 766])
+output: torch.Size([766, 384])
+up: torch.Size([210, 766])
+down: torch.Size([766, 210])
+Layer: 11
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Model Size after pruning: 33457837
+Model Size: 33457837
+Model Size after pruning: 33457837
+05/01/2024 15:46:00 - WARNING - datasets.fingerprint - Parameter 'function'=<function main.<locals>.preprocess_function at 0x1494526c3b80> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead. Make sure your transforms and parameters are serializable with pickle or dill for the dataset fingerprinting and caching to work. If you reuse this transform, the caching mechanism will consider it to be different from the previous calls and recompute everything. This warning is only showed once. Subsequent hashing failures won't be showed.
+05/01/2024 15:46:00 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /scratch/network/hw8161/.cache/glue/mrpc/1.0.0/a420f5e518f42454003587c47467370329f9fc0c6508d1ae0c45b58ea266a353/cache-5e2502420ae59635.arrow
+05/01/2024 15:46:00 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.preprocess_function at 0x14945270cf70> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+05/01/2024 15:46:00 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /scratch/network/hw8161/.cache/glue/mrpc/1.0.0/a420f5e518f42454003587c47467370329f9fc0c6508d1ae0c45b58ea266a353/cache-9af4974096f5b0ee.arrow
+05/01/2024 15:46:00 - INFO - datasets.fingerprint - Parameter 'function'=<function main.<locals>.preprocess_function at 0x1494526c3b80> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead.
+05/01/2024 15:46:00 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /scratch/network/hw8161/.cache/glue/mrpc/1.0.0/a420f5e518f42454003587c47467370329f9fc0c6508d1ae0c45b58ea266a353/cache-399029b404f18db9.arrow
+05/01/2024 15:46:00 - INFO - __main__ - Sample 2105 of the training set: {'sentence1': 'The Communicator can also consolidate e-mail from multiple screen names and other POP and IMAP accounts into a single application .', 'sentence2': 'AOL Communicator can consolidate e-mail from multiple AOL screen names , as well as from other POP and IMAP-based e-mail accounts .', 'label': 1, 'idx': 2338, 'input_ids': [101, 1996, 4012, 23041, 5555, 4263, 2064, 2036, 24939, 1041, 1011, 5653, 2013, 3674, 3898, 3415, 1998, 2060, 3769, 1998, 10047, 9331, 6115, 2046, 1037, 2309, 4646, 1012, 102, 20118, 2140, 4012, 23041, 5555, 4263, 2064, 24939, 1041, 1011, 5653, 2013, 3674, 20118, 2140, 3898, 3415, 1010, 2004, 2092, 2004, 2013, 2060, 3769, 1998, 10047, 9331, 1011, 2241, 1041, 1011, 5653, 6115, 1012, 102, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'token_type_ids': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}.
+05/01/2024 15:46:00 - INFO - __main__ - Sample 1315 of the training set: {'sentence1': 'The dollar gained against the euro , yen and Swiss franc after September U.S. retail sales figures came in slightly weaker than consensus forecasts .', 'sentence2': 'The greenback rose steeply against the euro , yen and Swiss franc despite weaker-than-expected September U.S. retail sales figures .', 'label': 1, 'idx': 1465, 'input_ids': [101, 1996, 7922, 4227, 2114, 1996, 9944, 1010, 18371, 1998, 5364, 23151, 2278, 2044, 2244, 1057, 1012, 1055, 1012, 7027, 4341, 4481, 2234, 1999, 3621, 15863, 2084, 10465, 19939, 2015, 1012, 102, 1996, 2665, 5963, 3123, 9561, 2135, 2114, 1996, 9944, 1010, 18371, 1998, 5364, 23151, 2278, 2750, 15863, 1011, 2084, 1011, 3517, 2244, 1057, 1012, 1055, 1012, 7027, 4341, 4481, 1012, 102, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'token_type_ids': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}.
+05/01/2024 15:46:00 - INFO - __main__ - Sample 1955 of the training set: {'sentence1': "But he said he had Dr Hollingworth 's legal advice that he had been denied natural justice by the church inquiry .", 'sentence2': "Senator Brandis backed Dr Hollingworth 's claims he had been denied natural justice by the Anglican Church inquiry into the claims against him .", 'label': 0, 'idx': 2170, 'input_ids': [101, 2021, 2002, 2056, 2002, 2018, 2852, 7570, 13112, 5172, 1005, 1055, 3423, 6040, 2008, 2002, 2018, 2042, 6380, 3019, 3425, 2011, 1996, 2277, 9934, 1012, 102, 5205, 4435, 2483, 6153, 2852, 7570, 13112, 5172, 1005, 1055, 4447, 2002, 2018, 2042, 6380, 3019, 3425, 2011, 1996, 9437, 2277, 9934, 2046, 1996, 4447, 2114, 2032, 1012, 102, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'token_type_ids': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'attention_mask': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}.
+05/01/2024 15:46:00 - INFO - datasets.utils.file_utils - HEAD request to https://raw.githubusercontent.com/huggingface/datasets/1.18.0/metrics/glue/glue.py timed out, retrying... [1.0]
+05/01/2024 15:46:01 - WARNING - datasets.load - Using the latest cached version of the module from /scratch/network/hw8161/.cache/huggingface/modules/datasets_modules/metrics/glue/1f893b8ccbdd80c366ce0db148773ae919cdbd00f612188de0c14924a82fe984 (last modified on Wed Mar 20 22:26:50 2024) since it couldn't be found locally at glue, or remotely on the Hugging Face Hub.
+05/01/2024 15:46:01 - INFO - __main__ - ************* 3668 Training Examples Loaded *************
+05/01/2024 15:46:01 - INFO - __main__ - ************* 408 Evaluation Examples Loaded *************
+[INFO|trainer.py:570] 2024-05-01 15:46:01,568 >> The following columns in the training set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 - main params, number of params: 34555796, weight_decay: 0.0, lr: 3e-05
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 - main params, number of params: 81691, weight_decay: 0.0, lr: 3e-05
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 - ***** Running training *****
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 -   Num examples = 3668
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 -   Num Epochs = 20
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 -   Instantaneous batch size per device = 64
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 -   Total train batch size (w. parallel, distributed & accumulation) = 64
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 -   Gradient Accumulation steps = 1
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 -   Total optimization steps = 1160
+Epoch:   0%|          | 0/20 [00:00<?, ?it/s][INFO|trainer.py:570] 2024-05-01 15:46:01,572 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:46:01 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A
+Evaluation:   8%|▊         | 1/13 [00:00<00:01,  8.84it/s][A
+Evaluation:  31%|███       | 4/13 [00:00<00:00, 16.50it/s][A
+Evaluation:  54%|█████▍    | 7/13 [00:00<00:00, 18.58it/s][A
+Evaluation:  77%|███████▋  | 10/13 [00:00<00:00, 19.52it/s][A
+Evaluation: 100%|██████████| 13/13 [00:00<00:00, 20.65it/s][AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 19.19it/s]05/01/2024 15:46:02 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:46:02 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8725490196078431, 'f1': 0.9097222222222222, 'combined_score': 0.8911356209150327, 'eval_loss': 0.68547314, 'step': 0}
+05/01/2024 15:46:02 - INFO - trainer.trainer_mod_2 - Saving the best model so far: [Epoch 0 | Step: 0 | Model size: Full | Score: 0.87255]
+
+[INFO|configuration_utils.py:439] 2024-05-01 15:46:02,271 >> Configuration saved in /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5/best/config.json
+[INFO|modeling_utils.py:1084] 2024-05-01 15:46:02,634 >> Model weights saved in /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5/best/pytorch_model.bin
+
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A05/01/2024 15:46:02 - INFO - trainer.trainer_mod_2 - v4 Global step: 0, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:   2%|▏         | 1/58 [00:00<00:23,  2.43it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:20,  2.67it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:19,  2.78it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:18,  2.94it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  2.96it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:17,  2.96it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:16,  3.04it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:17,  2.83it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:17,  2.86it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:16,  2.98it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  2.97it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:15,  2.88it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:15,  2.92it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:14,  2.94it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:14,  3.04it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:13,  3.00it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.05it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:13,  3.00it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:13,  2.98it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  3.07it/s][A
+Iteration:  36%|███▌      | 21/58 [00:07<00:11,  3.11it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:11,  3.14it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  3.16it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:11,  3.08it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:11,  2.98it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  3.04it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:10,  3.00it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.04it/s][A
+Iteration:  50%|█████     | 29/58 [00:09<00:09,  3.06it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  2.94it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:09,  2.81it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:10<00:08,  2.92it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  3.00it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:07,  3.01it/s][A
+Iteration:  60%|██████    | 35/58 [00:11<00:07,  3.00it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  3.04it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:06,  3.11it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:12<00:06,  3.08it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  3.05it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:05,  3.08it/s][A
+Iteration:  71%|███████   | 41/58 [00:13<00:05,  3.11it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  3.11it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.06it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:14<00:04,  3.10it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:14<00:04,  3.11it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:03,  3.15it/s][A
+Iteration:  81%|████████  | 47/58 [00:15<00:03,  3.17it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:15<00:03,  3.12it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.05it/s][A[INFO|trainer.py:570] 2024-05-01 15:46:19,238 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:46:19 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:46:19 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:46:19 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:46:19 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:46:19 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8504901960784313, 'f1': 0.8950086058519794, 'combined_score': 0.8727494009652054, 'eval_loss': 0.71264493, 'step': 50}
+
+
+Iteration:  86%|████████▌ | 50/58 [00:17<00:04,  1.94it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:03,  2.11it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:02,  2.32it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:02,  2.49it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  2.63it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:01,  2.73it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  2.68it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  2.81it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.50it/s][A05/01/2024 15:46:22 - INFO - trainer.trainer_mod_2 - Epoch 0 finished. Took 19.76 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.94it/s]
+Epoch:   5%|▌         | 1/20 [00:20<06:35, 20.82s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:16,  3.52it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:18,  2.97it/s][A
+Iteration:   5%|▌         | 3/58 [00:00<00:18,  3.04it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.03it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:18,  2.93it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:17,  2.96it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:17,  2.87it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:16,  2.96it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:16,  3.06it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:16,  2.94it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  2.94it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:15,  3.02it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:14,  3.07it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:14,  3.05it/s][A
+Iteration:  26%|██▌       | 15/58 [00:04<00:14,  3.07it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:13,  3.09it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.11it/s][A
+Iteration:  31%|███       | 18/58 [00:05<00:12,  3.14it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:12,  3.10it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  3.07it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:11,  3.08it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:11,  3.11it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  3.06it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:11,  3.08it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.11it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  3.13it/s][A
+Iteration:  47%|████▋     | 27/58 [00:08<00:10,  3.09it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.03it/s][A
+Iteration:  50%|█████     | 29/58 [00:09<00:10,  2.87it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:09<00:09,  2.98it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:08,  3.05it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:10<00:08,  3.03it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:10<00:08,  3.07it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:07,  3.13it/s][A
+Iteration:  60%|██████    | 35/58 [00:11<00:07,  3.09it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:11<00:07,  3.05it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:06,  3.10it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:12<00:06,  3.13it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:12<00:06,  3.10it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:05,  3.12it/s][A
+Iteration:  71%|███████   | 41/58 [00:13<00:05,  2.93it/s][A[INFO|trainer.py:570] 2024-05-01 15:46:36,270 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:46:36 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:46:36 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:46:36 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:46:36 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:46:36 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8431372549019608, 'f1': 0.8873239436619718, 'combined_score': 0.8652305992819662, 'eval_loss': 0.6775377, 'step': 100}
+
+
+Iteration:  72%|███████▏  | 42/58 [00:14<00:08,  1.84it/s][A05/01/2024 15:46:37 - INFO - trainer.trainer_mod_2 - v4 Global step: 100, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  74%|███████▍  | 43/58 [00:14<00:07,  2.07it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:06,  2.33it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:05,  2.55it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:04,  2.65it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:04,  2.65it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  2.72it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:03,  2.87it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  2.94it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.02it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.01it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.01it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.01it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:01,  2.99it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.05it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.09it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.82it/s][A05/01/2024 15:46:41 - INFO - trainer.trainer_mod_2 - Epoch 1 finished. Took 19.53 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.97it/s]
+Epoch:  10%|█         | 2/20 [00:40<06:01, 20.06s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:17,  3.19it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:17,  3.20it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:19,  2.86it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:18,  2.87it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:18,  2.90it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:17,  2.98it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:16,  3.05it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:16,  3.12it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:16,  3.05it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:15,  3.00it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:16,  2.93it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:15,  2.99it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:15,  2.84it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:15,  2.89it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:14,  2.98it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:14,  2.98it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.07it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:12,  3.09it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:12,  3.06it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  3.10it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:11,  3.13it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:11,  3.16it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  3.16it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:10,  3.12it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:11,  2.93it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  2.95it/s][A
+Iteration:  47%|████▋     | 27/58 [00:08<00:10,  2.94it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:10,  2.96it/s][A
+Iteration:  50%|█████     | 29/58 [00:09<00:10,  2.86it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  2.95it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:08,  3.02it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:10<00:08,  3.00it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:10<00:08,  3.00it/s][A[INFO|trainer.py:570] 2024-05-01 15:46:53,250 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:46:53 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:46:53 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:46:53 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:46:53 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:46:53 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8602941176470589, 'f1': 0.9028960817717206, 'combined_score': 0.8815950997093898, 'eval_loss': 0.7067436, 'step': 150}
+
+
+Iteration:  59%|█████▊    | 34/58 [00:11<00:12,  1.92it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:10,  2.14it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:09,  2.28it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:08,  2.48it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:07,  2.62it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  2.79it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:06,  2.91it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  3.01it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  3.05it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.03it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.00it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  2.99it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:03,  3.05it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  2.94it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  2.93it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:03,  2.99it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  2.90it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  2.99it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:02,  2.96it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  2.95it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.01it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:00,  3.08it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.11it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.24it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.97it/s][A05/01/2024 15:47:01 - INFO - trainer.trainer_mod_2 - Epoch 2 finished. Took 19.61 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.96it/s]
+Epoch:  15%|█▌        | 3/20 [00:59<05:37, 19.86s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:17,  3.29it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:17,  3.25it/s][A
+Iteration:   5%|▌         | 3/58 [00:00<00:18,  2.97it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.05it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  3.03it/s][A
+Iteration:  10%|█         | 6/58 [00:01<00:16,  3.07it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:15,  3.20it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:15,  3.22it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:15,  3.21it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:16,  2.98it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  2.99it/s][A
+Iteration:  21%|██        | 12/58 [00:03<00:15,  3.04it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:14,  3.03it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:14,  3.02it/s][A
+Iteration:  26%|██▌       | 15/58 [00:04<00:14,  3.06it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:13,  3.02it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.08it/s][A
+Iteration:  31%|███       | 18/58 [00:05<00:13,  3.02it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:13,  3.00it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  3.00it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:12,  2.91it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:12,  2.99it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  3.05it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:11,  3.09it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.07it/s][A[INFO|trainer.py:570] 2024-05-01 15:47:10,111 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:47:10 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:47:10 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:47:10 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.87it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.88it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.28it/s]05/01/2024 15:47:10 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:47:10 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8725490196078431, 'f1': 0.9100346020761245, 'combined_score': 0.8912918108419838, 'eval_loss': 0.6317892, 'step': 200}
+
+
+Iteration:  45%|████▍     | 26/58 [00:09<00:17,  1.82it/s][A05/01/2024 15:47:10 - INFO - trainer.trainer_mod_2 - v4 Global step: 200, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  47%|████▋     | 27/58 [00:09<00:15,  2.06it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:13,  2.21it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:12,  2.40it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:10,  2.62it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:09,  2.70it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:09,  2.83it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  2.85it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:08,  2.88it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:07,  2.91it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.94it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:07,  2.86it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:07,  2.75it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  2.88it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:06,  2.98it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  2.96it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  2.97it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.02it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.08it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  3.03it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:03,  3.08it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  3.12it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.12it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.00it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.01it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.04it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.03it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.06it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.03it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:00,  3.09it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.05it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.00it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.71it/s][A05/01/2024 15:47:21 - INFO - trainer.trainer_mod_2 - Epoch 3 finished. Took 19.7 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.94it/s]
+Epoch:  20%|██        | 4/20 [01:19<05:16, 19.79s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:18,  3.01it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:17,  3.11it/s][A
+Iteration:   5%|▌         | 3/58 [00:00<00:17,  3.07it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.13it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:16,  3.18it/s][A
+Iteration:  10%|█         | 6/58 [00:01<00:16,  3.12it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:16,  3.06it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:16,  3.01it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:16,  3.01it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:15,  3.07it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  3.11it/s][A
+Iteration:  21%|██        | 12/58 [00:03<00:14,  3.16it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:14,  3.11it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:14,  3.07it/s][A
+Iteration:  26%|██▌       | 15/58 [00:04<00:14,  3.05it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:14,  2.96it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.04it/s][A[INFO|trainer.py:570] 2024-05-01 15:47:27,103 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:47:27 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:47:27 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:47:27 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.86it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.87it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.87it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.88it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.28it/s]05/01/2024 15:47:27 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:47:27 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8651960784313726, 'f1': 0.9050086355785838, 'combined_score': 0.8851023570049782, 'eval_loss': 0.66306454, 'step': 250}
+
+
+Iteration:  31%|███       | 18/58 [00:06<00:20,  1.94it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:18,  2.15it/s][A
+Iteration:  34%|███▍      | 20/58 [00:07<00:16,  2.33it/s][A
+Iteration:  36%|███▌      | 21/58 [00:07<00:14,  2.53it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:14,  2.54it/s][A
+Iteration:  40%|███▉      | 23/58 [00:08<00:12,  2.71it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:12,  2.67it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:11,  2.80it/s][A
+Iteration:  45%|████▍     | 26/58 [00:09<00:11,  2.84it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:10,  2.90it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:10,  2.93it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:09,  2.99it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  2.99it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:08,  3.06it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:08,  3.10it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  3.05it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:07,  3.04it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:07,  3.07it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  3.11it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:06,  3.06it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:06,  3.08it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  3.03it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:05,  3.08it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  3.09it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  3.04it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.02it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.00it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  3.00it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:03,  3.04it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  2.93it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.01it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.05it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.03it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.02it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.01it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.10it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.05it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:01,  2.87it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  2.81it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  2.77it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.47it/s][A05/01/2024 15:47:40 - INFO - trainer.trainer_mod_2 - Epoch 4 finished. Took 19.69 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.95it/s]
+Epoch:  25%|██▌       | 5/20 [01:39<04:56, 19.76s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:21,  2.70it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:19,  2.82it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:19,  2.89it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:19,  2.75it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:19,  2.76it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:18,  2.80it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:17,  2.93it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:16,  2.99it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:16,  3.03it/s][A[INFO|trainer.py:570] 2024-05-01 15:47:44,332 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:47:44 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:47:44 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:47:44 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.90it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.30it/s]05/01/2024 15:47:44 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:47:45 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8602941176470589, 'f1': 0.9018932874354562, 'combined_score': 0.8810937025412575, 'eval_loss': 0.71718866, 'step': 300}
+
+
+Iteration:  17%|█▋        | 10/58 [00:04<00:26,  1.80it/s][A05/01/2024 15:47:45 - INFO - trainer.trainer_mod_2 - v4 Global step: 300, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  19%|█▉        | 11/58 [00:04<00:22,  2.05it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:19,  2.35it/s][A
+Iteration:  22%|██▏       | 13/58 [00:05<00:18,  2.40it/s][A
+Iteration:  24%|██▍       | 14/58 [00:05<00:17,  2.48it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:15,  2.72it/s][A
+Iteration:  28%|██▊       | 16/58 [00:06<00:14,  2.80it/s][A
+Iteration:  29%|██▉       | 17/58 [00:06<00:14,  2.91it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:13,  2.93it/s][A
+Iteration:  33%|███▎      | 19/58 [00:07<00:13,  2.92it/s][A
+Iteration:  34%|███▍      | 20/58 [00:07<00:12,  3.02it/s][A
+Iteration:  36%|███▌      | 21/58 [00:07<00:12,  3.07it/s][A
+Iteration:  38%|███▊      | 22/58 [00:08<00:11,  3.09it/s][A
+Iteration:  40%|███▉      | 23/58 [00:08<00:11,  3.04it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:11,  3.01it/s][A
+Iteration:  43%|████▎     | 25/58 [00:09<00:10,  3.00it/s][A
+Iteration:  45%|████▍     | 26/58 [00:09<00:10,  2.98it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:10,  2.96it/s][A
+Iteration:  48%|████▊     | 28/58 [00:10<00:10,  2.83it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:09,  2.93it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  2.99it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:11<00:08,  3.07it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:08,  3.06it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  3.02it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:12<00:08,  2.98it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:07,  2.89it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.92it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:13<00:07,  2.95it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:07,  2.86it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  2.96it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:14<00:06,  2.95it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  2.97it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  2.98it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:15<00:05,  2.99it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.00it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  3.00it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:16<00:03,  3.06it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  3.12it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.09it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:17<00:02,  3.10it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.14it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.17it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:18<00:01,  3.10it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.07it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.09it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:19<00:00,  3.06it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.10it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.14it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.87it/s][A05/01/2024 15:48:00 - INFO - trainer.trainer_mod_2 - Epoch 5 finished. Took 19.81 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.93it/s]
+Epoch:  30%|███       | 6/20 [01:59<04:36, 19.77s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:17,  3.21it/s][A[INFO|trainer.py:570] 2024-05-01 15:48:01,387 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:48:01 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:48:01 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:48:01 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.88it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:48:02 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:48:02 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8676470588235294, 'f1': 0.9072164948453608, 'combined_score': 0.8874317768344451, 'eval_loss': 0.6610063, 'step': 350}
+
+
+Iteration:   3%|▎         | 2/58 [00:01<00:38,  1.44it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:29,  1.87it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:24,  2.19it/s][A
+Iteration:   9%|▊         | 5/58 [00:02<00:21,  2.42it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:20,  2.56it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:19,  2.67it/s][A
+Iteration:  14%|█▍        | 8/58 [00:03<00:18,  2.77it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:16,  2.90it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:15,  3.00it/s][A
+Iteration:  19%|█▉        | 11/58 [00:04<00:15,  3.00it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:15,  3.05it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:14,  3.04it/s][A
+Iteration:  24%|██▍       | 14/58 [00:05<00:14,  3.03it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:13,  3.08it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:14,  2.98it/s][A
+Iteration:  29%|██▉       | 17/58 [00:06<00:14,  2.84it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:14,  2.86it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:13,  2.90it/s][A
+Iteration:  34%|███▍      | 20/58 [00:07<00:12,  2.98it/s][A
+Iteration:  36%|███▌      | 21/58 [00:07<00:12,  2.99it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:12,  3.00it/s][A
+Iteration:  40%|███▉      | 23/58 [00:08<00:11,  3.06it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:10,  3.10it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.05it/s][A
+Iteration:  45%|████▍     | 26/58 [00:09<00:10,  3.03it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:10,  3.02it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.05it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:10,  2.88it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  2.92it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:09,  2.94it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:08,  3.02it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  3.09it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:08,  2.96it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:07,  2.98it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.88it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:07,  2.95it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:06,  3.03it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  3.08it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:05,  3.12it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  3.12it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  3.05it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:05,  2.94it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.02it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  3.00it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:04,  3.00it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  3.04it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.09it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.06it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.11it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.15it/s][A[INFO|trainer.py:570] 2024-05-01 15:48:18,620 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:48:18 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:48:18 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:48:18 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:48:19 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:48:19 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8553921568627451, 'f1': 0.8981001727115717, 'combined_score': 0.8767461647871584, 'eval_loss': 0.7124527, 'step': 400}
+
+
+Iteration:  90%|████████▉ | 52/58 [00:18<00:03,  1.92it/s][A05/01/2024 15:48:19 - INFO - trainer.trainer_mod_2 - v4 Global step: 400, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  91%|█████████▏| 53/58 [00:18<00:02,  2.19it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:19<00:01,  2.39it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:19<00:01,  2.57it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  2.69it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:20<00:00,  2.65it/s][A
+Iteration: 100%|██████████| 58/58 [00:20<00:00,  3.34it/s][A05/01/2024 15:48:21 - INFO - trainer.trainer_mod_2 - Epoch 6 finished. Took 20.31 seconds.
+Iteration: 100%|██████████| 58/58 [00:20<00:00,  2.86it/s]
+Epoch:  35%|███▌      | 7/20 [02:19<04:19, 19.95s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:18,  3.01it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:17,  3.11it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:19,  2.83it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:19,  2.77it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:19,  2.74it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:18,  2.83it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:17,  2.92it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:17,  2.92it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:16,  2.99it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:15,  3.06it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  3.09it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:14,  3.12it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:14,  3.14it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:13,  3.16it/s][A
+Iteration:  26%|██▌       | 15/58 [00:04<00:13,  3.20it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:13,  3.03it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.06it/s][A
+Iteration:  31%|███       | 18/58 [00:05<00:13,  3.04it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:12,  3.01it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  3.04it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:11,  3.11it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:12,  2.96it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  2.97it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:11,  3.03it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.10it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  2.99it/s][A
+Iteration:  47%|████▋     | 27/58 [00:08<00:10,  3.07it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.03it/s][A
+Iteration:  50%|█████     | 29/58 [00:09<00:09,  3.10it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:09<00:09,  3.11it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:08,  3.08it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:10<00:08,  2.90it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:10<00:08,  2.90it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:08,  2.90it/s][A
+Iteration:  60%|██████    | 35/58 [00:11<00:07,  2.91it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.93it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:07,  2.95it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:12<00:06,  3.02it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:12<00:06,  3.02it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:05,  3.08it/s][A
+Iteration:  71%|███████   | 41/58 [00:13<00:05,  3.03it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:13<00:05,  3.09it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.06it/s][A[INFO|trainer.py:570] 2024-05-01 15:48:35,621 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:48:35 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:48:35 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:48:35 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.85it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:48:36 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:48:36 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8651960784313726, 'f1': 0.9053356282271946, 'combined_score': 0.8852658533292836, 'eval_loss': 0.68531543, 'step': 450}
+
+
+Iteration:  76%|███████▌  | 44/58 [00:15<00:07,  1.97it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:06,  2.11it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:05,  2.31it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:04,  2.48it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  2.60it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:03,  2.76it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  2.80it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  2.91it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:02,  2.93it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.02it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.01it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:01,  2.99it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.05it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.09it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.79it/s][A05/01/2024 15:48:40 - INFO - trainer.trainer_mod_2 - Epoch 7 finished. Took 19.65 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.95it/s]
+Epoch:  40%|████      | 8/20 [02:39<03:58, 19.85s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:19,  2.97it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:17,  3.11it/s][A
+Iteration:   5%|▌         | 3/58 [00:00<00:17,  3.07it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.15it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  3.07it/s][A
+Iteration:  10%|█         | 6/58 [00:01<00:17,  3.04it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:17,  2.92it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:16,  2.95it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:16,  2.96it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:16,  2.87it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  2.97it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:15,  2.96it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:15,  2.97it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:14,  3.02it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:14,  3.01it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:13,  3.07it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.05it/s][A
+Iteration:  31%|███       | 18/58 [00:05<00:13,  3.08it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:12,  3.11it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  3.05it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:12,  3.00it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:11,  3.08it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  3.05it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:10,  3.10it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.11it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  3.08it/s][A
+Iteration:  47%|████▋     | 27/58 [00:08<00:09,  3.14it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.18it/s][A
+Iteration:  50%|█████     | 29/58 [00:09<00:09,  3.13it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:09<00:09,  3.09it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:09,  2.96it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:10<00:08,  3.01it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:10<00:08,  3.07it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:07,  3.05it/s][A
+Iteration:  60%|██████    | 35/58 [00:11<00:07,  3.10it/s][A[INFO|trainer.py:570] 2024-05-01 15:48:52,521 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:48:52 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:48:52 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:48:52 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:48:53 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:48:53 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8602941176470589, 'f1': 0.9012131715771231, 'combined_score': 0.8807536446120909, 'eval_loss': 0.7063026, 'step': 500}
+
+
+Iteration:  62%|██████▏   | 36/58 [00:12<00:11,  1.94it/s][A05/01/2024 15:48:53 - INFO - trainer.trainer_mod_2 - v4 Global step: 500, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  64%|██████▍   | 37/58 [00:12<00:10,  2.09it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:08,  2.28it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:07,  2.51it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:06,  2.69it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:06,  2.78it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  2.91it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.01it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  2.85it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  2.82it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:04,  2.94it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  2.96it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.01it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:03,  2.99it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  2.97it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  2.87it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:02,  2.98it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.04it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.08it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:00,  3.06it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  2.89it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  2.90it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.58it/s][A05/01/2024 15:49:00 - INFO - trainer.trainer_mod_2 - Epoch 8 finished. Took 19.65 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.95it/s]
+Epoch:  45%|████▌     | 9/20 [02:58<03:37, 19.79s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:18,  3.13it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:18,  3.06it/s][A
+Iteration:   5%|▌         | 3/58 [00:00<00:17,  3.09it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.13it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  3.08it/s][A
+Iteration:  10%|█         | 6/58 [00:01<00:16,  3.12it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:16,  3.12it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:15,  3.17it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:15,  3.19it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:14,  3.22it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:14,  3.22it/s][A
+Iteration:  21%|██        | 12/58 [00:03<00:14,  3.21it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:13,  3.23it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:14,  2.99it/s][A
+Iteration:  26%|██▌       | 15/58 [00:04<00:14,  3.06it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:13,  3.04it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.07it/s][A
+Iteration:  31%|███       | 18/58 [00:05<00:13,  2.88it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:13,  2.92it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  2.95it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:12,  3.01it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:12,  2.99it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  3.00it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:11,  3.05it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.12it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  3.12it/s][A
+Iteration:  47%|████▋     | 27/58 [00:08<00:10,  3.08it/s][A[INFO|trainer.py:570] 2024-05-01 15:49:09,414 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:49:09 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:49:09 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:49:09 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.88it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:49:10 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:49:10 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8578431372549019, 'f1': 0.8989547038327526, 'combined_score': 0.8783989205438272, 'eval_loss': 0.68156415, 'step': 550}
+
+
+Iteration:  48%|████▊     | 28/58 [00:09<00:15,  1.98it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:12,  2.23it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:11,  2.45it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:10,  2.60it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:09,  2.65it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:09,  2.66it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:09,  2.66it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:08,  2.79it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.92it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:07,  2.94it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:06,  2.94it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  2.99it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:06,  2.99it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  2.98it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  2.95it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:05,  2.97it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.02it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  3.02it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:03,  3.02it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  2.91it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.01it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.07it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.05it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.11it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.05it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.01it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  2.86it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:01,  2.93it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  2.95it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.03it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.74it/s][A05/01/2024 15:49:19 - INFO - trainer.trainer_mod_2 - Epoch 9 finished. Took 19.51 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.97it/s]
+Epoch:  50%|█████     | 10/20 [03:18<03:17, 19.70s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:19,  2.95it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:18,  2.98it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:19,  2.83it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:18,  2.88it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  2.99it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:17,  2.99it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:17,  2.89it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:16,  2.99it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:16,  3.06it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:15,  3.11it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:14,  3.14it/s][A
+Iteration:  21%|██        | 12/58 [00:03<00:15,  3.06it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:14,  3.12it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:15,  2.91it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:14,  2.94it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:13,  3.00it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.06it/s][A
+Iteration:  31%|███       | 18/58 [00:05<00:12,  3.10it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:13,  2.96it/s][A[INFO|trainer.py:570] 2024-05-01 15:49:26,494 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:49:26 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:49:26 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:49:26 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.84it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.85it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.86it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.86it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.24it/s]05/01/2024 15:49:27 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:49:27 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8700980392156863, 'f1': 0.9078260869565218, 'combined_score': 0.888962063086104, 'eval_loss': 0.6679713, 'step': 600}
+
+
+Iteration:  34%|███▍      | 20/58 [00:07<00:19,  1.93it/s][A05/01/2024 15:49:27 - INFO - trainer.trainer_mod_2 - v4 Global step: 600, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  36%|███▌      | 21/58 [00:07<00:16,  2.19it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:15,  2.36it/s][A
+Iteration:  40%|███▉      | 23/58 [00:08<00:13,  2.58it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:12,  2.68it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:11,  2.81it/s][A
+Iteration:  45%|████▍     | 26/58 [00:09<00:11,  2.87it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:11,  2.80it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:10,  2.85it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:09,  2.94it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  2.81it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:09,  2.91it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:08,  2.93it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  2.94it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:08,  2.93it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:07,  2.95it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  3.00it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:13<00:07,  2.84it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:06,  2.88it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  2.98it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:14<00:06,  2.99it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  2.95it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  3.01it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:15<00:05,  2.93it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.00it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  3.06it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:03,  3.04it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  3.02it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  2.99it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.04it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.02it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.07it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.05it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.03it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.00it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:01,  2.97it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.05it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.07it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.82it/s][A05/01/2024 15:49:39 - INFO - trainer.trainer_mod_2 - Epoch 10 finished. Took 19.73 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.94it/s]
+Epoch:  55%|█████▌    | 11/20 [03:38<02:57, 19.71s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:21,  2.70it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:19,  2.88it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:20,  2.73it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:19,  2.83it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  2.95it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:18,  2.81it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:17,  2.83it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:17,  2.92it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:16,  2.93it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:15,  3.03it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  3.02it/s][A[INFO|trainer.py:570] 2024-05-01 15:49:43,658 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:49:43 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:49:43 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:49:43 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.87it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.88it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.28it/s]05/01/2024 15:49:44 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:49:44 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8651960784313726, 'f1': 0.905982905982906, 'combined_score': 0.8855894922071392, 'eval_loss': 0.66408765, 'step': 650}
+
+
+Iteration:  21%|██        | 12/58 [00:04<00:23,  1.94it/s][A
+Iteration:  22%|██▏       | 13/58 [00:05<00:21,  2.09it/s][A
+Iteration:  24%|██▍       | 14/58 [00:05<00:19,  2.29it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:17,  2.51it/s][A
+Iteration:  28%|██▊       | 16/58 [00:06<00:16,  2.62it/s][A
+Iteration:  29%|██▉       | 17/58 [00:06<00:15,  2.71it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:14,  2.77it/s][A
+Iteration:  33%|███▎      | 19/58 [00:07<00:13,  2.84it/s][A
+Iteration:  34%|███▍      | 20/58 [00:07<00:13,  2.88it/s][A
+Iteration:  36%|███▌      | 21/58 [00:07<00:12,  2.97it/s][A
+Iteration:  38%|███▊      | 22/58 [00:08<00:12,  2.98it/s][A
+Iteration:  40%|███▉      | 23/58 [00:08<00:11,  2.99it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:11,  3.05it/s][A
+Iteration:  43%|████▎     | 25/58 [00:09<00:10,  3.10it/s][A
+Iteration:  45%|████▍     | 26/58 [00:09<00:10,  3.13it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:09,  3.16it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.16it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:09,  3.17it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  3.00it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:11<00:09,  2.99it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:08,  3.06it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  3.01it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:07,  3.14it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:07,  2.98it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.90it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:13<00:07,  2.97it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:06,  2.95it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  2.94it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:14<00:06,  2.99it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  3.00it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  3.00it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.07it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.10it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  2.97it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:03,  3.03it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  3.02it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.00it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.04it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.06it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.05it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.03it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.02it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.10it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:00,  3.14it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.14it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.06it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.79it/s][A05/01/2024 15:49:59 - INFO - trainer.trainer_mod_2 - Epoch 11 finished. Took 19.69 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.95it/s]
+Epoch:  60%|██████    | 12/20 [03:57<02:37, 19.70s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:17,  3.26it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:18,  3.06it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:19,  2.81it/s][A[INFO|trainer.py:570] 2024-05-01 15:50:00,673 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:50:00 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:50:00 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:50:00 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.87it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:50:01 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:50:01 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8553921568627451, 'f1': 0.8977469670710572, 'combined_score': 0.8765695619669012, 'eval_loss': 0.6841908, 'step': 700}
+
+
+Iteration:   7%|▋         | 4/58 [00:02<00:32,  1.65it/s][A05/01/2024 15:50:01 - INFO - trainer.trainer_mod_2 - v4 Global step: 700, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:   9%|▊         | 5/58 [00:02<00:26,  2.00it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:22,  2.28it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:20,  2.47it/s][A
+Iteration:  14%|█▍        | 8/58 [00:03<00:18,  2.67it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:17,  2.77it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:16,  2.84it/s][A
+Iteration:  19%|█▉        | 11/58 [00:04<00:16,  2.92it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:16,  2.84it/s][A
+Iteration:  22%|██▏       | 13/58 [00:05<00:15,  2.87it/s][A
+Iteration:  24%|██▍       | 14/58 [00:05<00:14,  2.97it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:14,  2.98it/s][A
+Iteration:  28%|██▊       | 16/58 [00:06<00:14,  2.91it/s][A
+Iteration:  29%|██▉       | 17/58 [00:06<00:13,  3.01it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:13,  2.91it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:13,  3.00it/s][A
+Iteration:  34%|███▍      | 20/58 [00:07<00:12,  3.05it/s][A
+Iteration:  36%|███▌      | 21/58 [00:07<00:11,  3.12it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:11,  3.12it/s][A
+Iteration:  40%|███▉      | 23/58 [00:08<00:11,  3.07it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:10,  3.11it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.07it/s][A
+Iteration:  45%|████▍     | 26/58 [00:09<00:10,  3.11it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:10,  3.05it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.01it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:09,  3.05it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  3.03it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:08,  3.10it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:08,  3.07it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  2.90it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:08,  2.92it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:07,  3.01it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.98it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:07,  2.96it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:06,  2.97it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  3.02it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:05,  3.05it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  2.94it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  2.99it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.00it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  2.97it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  3.03it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:03,  3.00it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  3.06it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.11it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.13it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.08it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.10it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.05it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.07it/s][A[INFO|trainer.py:570] 2024-05-01 15:50:17,720 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:50:17 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:50:17 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:50:17 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.88it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:50:18 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:50:18 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8529411764705882, 'f1': 0.894736842105263, 'combined_score': 0.8738390092879256, 'eval_loss': 0.6990956, 'step': 750}
+
+
+Iteration:  93%|█████████▎| 54/58 [00:19<00:01,  2.00it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:19<00:01,  2.14it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  2.34it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:20<00:00,  2.54it/s][A
+Iteration: 100%|██████████| 58/58 [00:20<00:00,  3.22it/s][A05/01/2024 15:50:19 - INFO - trainer.trainer_mod_2 - Epoch 12 finished. Took 20.24 seconds.
+Iteration: 100%|██████████| 58/58 [00:20<00:00,  2.87it/s]
+Epoch:  65%|██████▌   | 13/20 [04:17<02:19, 19.87s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:19,  2.90it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:19,  2.92it/s][A
+Iteration:   5%|▌         | 3/58 [00:00<00:18,  3.04it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:18,  2.98it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:18,  2.82it/s][A
+Iteration:  10%|█         | 6/58 [00:02<00:17,  2.94it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:17,  2.96it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:16,  2.95it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:16,  2.97it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:16,  2.99it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  3.13it/s][A
+Iteration:  21%|██        | 12/58 [00:03<00:14,  3.13it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:14,  3.15it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:13,  3.19it/s][A
+Iteration:  26%|██▌       | 15/58 [00:04<00:13,  3.19it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:13,  3.13it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.15it/s][A
+Iteration:  31%|███       | 18/58 [00:05<00:12,  3.14it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:12,  3.16it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:11,  3.19it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:11,  3.13it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:11,  3.15it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  3.10it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:11,  2.90it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:11,  2.99it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  3.03it/s][A
+Iteration:  47%|████▋     | 27/58 [00:08<00:10,  3.09it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.04it/s][A
+Iteration:  50%|█████     | 29/58 [00:09<00:09,  3.17it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:09<00:08,  3.12it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:08,  3.07it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:10<00:08,  3.02it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:10<00:08,  3.08it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:07,  3.09it/s][A
+Iteration:  60%|██████    | 35/58 [00:11<00:07,  3.07it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:11<00:07,  3.10it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:07,  2.99it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:12<00:06,  2.89it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:12<00:06,  2.96it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:05,  3.03it/s][A
+Iteration:  71%|███████   | 41/58 [00:13<00:05,  3.10it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:13<00:05,  3.07it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.11it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:14<00:04,  3.08it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:14<00:04,  3.11it/s][A[INFO|trainer.py:570] 2024-05-01 15:50:34,539 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:50:34 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:50:34 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:50:34 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.90it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.90it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.90it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.90it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.30it/s]05/01/2024 15:50:35 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:50:35 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8504901960784313, 'f1': 0.8957264957264958, 'combined_score': 0.8731083459024636, 'eval_loss': 0.67819107, 'step': 800}
+
+
+Iteration:  79%|███████▉  | 46/58 [00:15<00:06,  1.94it/s][A05/01/2024 15:50:35 - INFO - trainer.trainer_mod_2 - v4 Global step: 800, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  81%|████████  | 47/58 [00:15<00:04,  2.21it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:04,  2.30it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:03,  2.45it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:03,  2.58it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  2.70it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:02,  2.70it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  2.84it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  2.94it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:01,  2.96it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  2.87it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  2.81it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.46it/s][A05/01/2024 15:50:39 - INFO - trainer.trainer_mod_2 - Epoch 13 finished. Took 19.58 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.96it/s]
+Epoch:  70%|███████   | 14/20 [04:37<01:58, 19.78s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:18,  3.02it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:18,  3.01it/s][A
+Iteration:   5%|▌         | 3/58 [00:00<00:17,  3.10it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.07it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  3.02it/s][A
+Iteration:  10%|█         | 6/58 [00:01<00:17,  3.02it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:16,  3.07it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:15,  3.14it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:15,  3.18it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:16,  2.95it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  3.00it/s][A
+Iteration:  21%|██        | 12/58 [00:03<00:15,  2.92it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:15,  3.00it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:14,  3.06it/s][A
+Iteration:  26%|██▌       | 15/58 [00:04<00:13,  3.08it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:13,  3.03it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.01it/s][A
+Iteration:  31%|███       | 18/58 [00:05<00:13,  3.00it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:12,  3.08it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  3.03it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:11,  3.08it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:12,  2.91it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  2.93it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:11,  2.94it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.01it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  2.91it/s][A
+Iteration:  47%|████▋     | 27/58 [00:08<00:10,  2.94it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.01it/s][A
+Iteration:  50%|█████     | 29/58 [00:09<00:09,  3.07it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:09<00:09,  3.05it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:09,  2.92it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:10<00:08,  2.92it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:10<00:08,  3.00it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:07,  3.05it/s][A
+Iteration:  60%|██████    | 35/58 [00:11<00:07,  3.07it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:11<00:07,  3.13it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:06,  3.07it/s][A[INFO|trainer.py:570] 2024-05-01 15:50:51,662 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:50:51 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:50:51 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:50:51 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.90it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.81it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.83it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.24it/s]05/01/2024 15:50:52 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:50:52 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8676470588235294, 'f1': 0.90625, 'combined_score': 0.8869485294117647, 'eval_loss': 0.686107, 'step': 850}
+
+
+Iteration:  66%|██████▌   | 38/58 [00:13<00:10,  1.94it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:08,  2.20it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:07,  2.30it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:06,  2.47it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:06,  2.60it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:05,  2.62it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:05,  2.76it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  2.83it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:04,  2.88it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  2.98it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  2.99it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.05it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.10it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.11it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.13it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.09it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.13it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:00,  3.06it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.10it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.15it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.87it/s][A05/01/2024 15:50:58 - INFO - trainer.trainer_mod_2 - Epoch 14 finished. Took 19.55 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.97it/s]
+Epoch:  75%|███████▌  | 15/20 [04:57<01:38, 19.71s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:19,  2.99it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:18,  3.01it/s][A
+Iteration:   5%|▌         | 3/58 [00:00<00:17,  3.10it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.04it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  3.09it/s][A
+Iteration:  10%|█         | 6/58 [00:01<00:16,  3.07it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:16,  3.09it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:16,  2.94it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:15,  3.10it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:15,  3.04it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  3.03it/s][A
+Iteration:  21%|██        | 12/58 [00:03<00:15,  2.99it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:15,  2.99it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:14,  3.03it/s][A
+Iteration:  26%|██▌       | 15/58 [00:04<00:14,  3.00it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:14,  3.00it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  2.96it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:13,  2.88it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:13,  2.92it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  3.00it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:12,  3.04it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:11,  3.09it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  3.04it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:10,  3.11it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.13it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  3.13it/s][A
+Iteration:  47%|████▋     | 27/58 [00:08<00:09,  3.16it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.17it/s][A
+Iteration:  50%|█████     | 29/58 [00:09<00:09,  3.15it/s][A[INFO|trainer.py:570] 2024-05-01 15:51:08,452 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:51:08 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:51:08 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:51:08 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.90it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:51:09 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:51:09 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8602941176470589, 'f1': 0.9025641025641027, 'combined_score': 0.8814291101055808, 'eval_loss': 0.6920297, 'step': 900}
+
+
+Iteration:  52%|█████▏    | 30/58 [00:10<00:14,  1.99it/s][A05/01/2024 15:51:09 - INFO - trainer.trainer_mod_2 - v4 Global step: 900, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  53%|█████▎    | 31/58 [00:10<00:12,  2.18it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:11,  2.36it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:09,  2.52it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:09,  2.65it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:08,  2.81it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.86it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:07,  2.95it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:06,  3.00it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  3.04it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:06,  2.88it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:06,  2.82it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  2.85it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:05,  2.96it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  2.97it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  2.98it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:04,  2.88it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  2.90it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  2.93it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:03,  3.00it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.00it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.00it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.07it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.01it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.06it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:01,  2.89it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  2.99it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  2.84it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.56it/s][A05/01/2024 15:51:18 - INFO - trainer.trainer_mod_2 - Epoch 15 finished. Took 19.68 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.95it/s]
+Epoch:  80%|████████  | 16/20 [05:16<01:18, 19.70s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:17,  3.26it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:20,  2.79it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:18,  2.96it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.08it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  3.02it/s][A
+Iteration:  10%|█         | 6/58 [00:01<00:17,  3.01it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:16,  3.07it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:17,  2.94it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:16,  2.94it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:16,  2.96it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  2.94it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:15,  3.02it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:14,  3.07it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:14,  3.10it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:14,  2.99it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:14,  2.99it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:13,  3.00it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:13,  2.89it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:13,  2.97it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:12,  2.98it/s][A
+Iteration:  36%|███▌      | 21/58 [00:07<00:12,  3.04it/s][A[INFO|trainer.py:570] 2024-05-01 15:51:25,640 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:51:25 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:51:25 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:51:25 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:51:26 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:51:26 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8700980392156863, 'f1': 0.9081455805892548, 'combined_score': 0.8891218099024705, 'eval_loss': 0.6563442, 'step': 950}
+
+
+Iteration:  38%|███▊      | 22/58 [00:07<00:18,  1.95it/s][A
+Iteration:  40%|███▉      | 23/58 [00:08<00:16,  2.18it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:14,  2.38it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:13,  2.54it/s][A
+Iteration:  45%|████▍     | 26/58 [00:09<00:12,  2.59it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:11,  2.68it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:10,  2.77it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:10,  2.89it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  2.97it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:09,  2.98it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:08,  2.99it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  3.00it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:08,  3.00it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:08,  2.85it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.89it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:13<00:07,  2.89it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:07,  2.78it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  2.84it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:14<00:05,  3.02it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  3.02it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  3.05it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.10it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.05it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  3.00it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:03,  3.04it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  3.01it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.07it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.03it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.00it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.04it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.09it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.05it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  2.92it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:01,  3.00it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.04it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.10it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.83it/s][A05/01/2024 15:51:38 - INFO - trainer.trainer_mod_2 - Epoch 16 finished. Took 19.72 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.94it/s]
+Epoch:  85%|████████▌ | 17/20 [05:36<00:59, 19.71s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:19,  3.00it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:20,  2.79it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:18,  2.98it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.06it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  3.10it/s][A
+Iteration:  10%|█         | 6/58 [00:01<00:16,  3.14it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:16,  3.09it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:16,  3.12it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:15,  3.14it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:15,  3.14it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  3.10it/s][A
+Iteration:  21%|██        | 12/58 [00:03<00:14,  3.11it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:15,  3.00it/s][A[INFO|trainer.py:570] 2024-05-01 15:51:42,627 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:51:42 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:51:42 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:51:42 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.87it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.87it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.28it/s]05/01/2024 15:51:43 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:51:43 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8504901960784313, 'f1': 0.896434634974533, 'combined_score': 0.8734624155264822, 'eval_loss': 0.759322, 'step': 1000}
+
+
+Iteration:  24%|██▍       | 14/58 [00:05<00:22,  1.92it/s][A05/01/2024 15:51:43 - INFO - trainer.trainer_mod_2 - v4 Global step: 1000, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  26%|██▌       | 15/58 [00:05<00:20,  2.14it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:17,  2.34it/s][A
+Iteration:  29%|██▉       | 17/58 [00:06<00:16,  2.54it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:14,  2.69it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:14,  2.78it/s][A
+Iteration:  34%|███▍      | 20/58 [00:07<00:14,  2.71it/s][A
+Iteration:  36%|███▌      | 21/58 [00:07<00:13,  2.66it/s][A
+Iteration:  38%|███▊      | 22/58 [00:08<00:13,  2.67it/s][A
+Iteration:  40%|███▉      | 23/58 [00:08<00:12,  2.76it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:12,  2.82it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:11,  2.93it/s][A
+Iteration:  45%|████▍     | 26/58 [00:09<00:10,  3.02it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:10,  3.07it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.09it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:09,  3.04it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  3.09it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:08,  3.07it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:08,  3.13it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  3.06it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:07,  3.02it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:07,  3.02it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  3.01it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:07,  2.98it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:06,  3.06it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  3.02it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:05,  3.07it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  3.05it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  2.88it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:05,  2.98it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  2.89it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  2.92it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:04,  2.91it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  2.99it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  2.98it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:03,  2.98it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  2.99it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  2.99it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.00it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.07it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.03it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:00,  3.00it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:19<00:00,  3.01it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.07it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.78it/s][A05/01/2024 15:51:57 - INFO - trainer.trainer_mod_2 - Epoch 17 finished. Took 19.69 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  2.95it/s]
+Epoch:  90%|█████████ | 18/20 [05:56<00:39, 19.70s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:21,  2.70it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:18,  2.99it/s][A
+Iteration:   5%|▌         | 3/58 [00:01<00:18,  2.96it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.16it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  2.98it/s][A[INFO|trainer.py:570] 2024-05-01 15:51:59,710 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:51:59 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:51:59 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:51:59 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.88it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.29it/s]05/01/2024 15:52:00 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:52:00 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8676470588235294, 'f1': 0.9075342465753423, 'combined_score': 0.8875906526994359, 'eval_loss': 0.6845692, 'step': 1050}
+
+
+Iteration:  10%|█         | 6/58 [00:02<00:27,  1.86it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:23,  2.16it/s][A
+Iteration:  14%|█▍        | 8/58 [00:03<00:21,  2.38it/s][A
+Iteration:  16%|█▌        | 9/58 [00:03<00:18,  2.59it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:17,  2.68it/s][A
+Iteration:  19%|█▉        | 11/58 [00:04<00:16,  2.83it/s][A
+Iteration:  21%|██        | 12/58 [00:04<00:16,  2.87it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:15,  2.89it/s][A
+Iteration:  24%|██▍       | 14/58 [00:05<00:14,  2.99it/s][A
+Iteration:  26%|██▌       | 15/58 [00:05<00:14,  2.99it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:14,  2.89it/s][A
+Iteration:  29%|██▉       | 17/58 [00:06<00:14,  2.92it/s][A
+Iteration:  31%|███       | 18/58 [00:06<00:13,  3.01it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:13,  2.99it/s][A
+Iteration:  34%|███▍      | 20/58 [00:07<00:12,  3.14it/s][A
+Iteration:  36%|███▌      | 21/58 [00:07<00:11,  3.16it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:11,  3.11it/s][A
+Iteration:  40%|███▉      | 23/58 [00:08<00:11,  3.12it/s][A
+Iteration:  41%|████▏     | 24/58 [00:08<00:11,  3.06it/s][A
+Iteration:  43%|████▎     | 25/58 [00:08<00:10,  3.02it/s][A
+Iteration:  45%|████▍     | 26/58 [00:09<00:10,  3.07it/s][A
+Iteration:  47%|████▋     | 27/58 [00:09<00:10,  3.03it/s][A
+Iteration:  48%|████▊     | 28/58 [00:09<00:09,  3.02it/s][A
+Iteration:  50%|█████     | 29/58 [00:10<00:09,  2.99it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:10<00:09,  2.99it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:08,  3.06it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:11<00:08,  3.09it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:11<00:08,  3.10it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:07,  3.08it/s][A
+Iteration:  60%|██████    | 35/58 [00:12<00:07,  3.09it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:12<00:07,  2.99it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:07,  2.89it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:13<00:07,  2.78it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:13<00:06,  2.89it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:06,  2.93it/s][A
+Iteration:  71%|███████   | 41/58 [00:14<00:05,  2.92it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:14<00:05,  2.99it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.05it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:15<00:04,  3.01it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:15<00:04,  2.86it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:04,  2.98it/s][A
+Iteration:  81%|████████  | 47/58 [00:16<00:03,  3.06it/s][A
+Iteration:  83%|████████▎ | 48/58 [00:16<00:03,  3.10it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:02,  3.07it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:17<00:02,  3.05it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  3.09it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:01,  3.12it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:18<00:01,  3.09it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  3.07it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:00,  3.10it/s][A[INFO|trainer.py:570] 2024-05-01 15:52:16,791 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:52:16 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:52:16 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:52:16 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.89it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.89it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.30it/s]05/01/2024 15:52:17 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:52:17 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8553921568627451, 'f1': 0.8998302207130731, 'combined_score': 0.877611188787909, 'eval_loss': 0.7124394, 'step': 1100}
+
+
+Iteration:  97%|█████████▋| 56/58 [00:19<00:01,  1.96it/s][A05/01/2024 15:52:17 - INFO - trainer.trainer_mod_2 - v4 Global step: 1100, Alignment: tensor([ 2,  5,  8, 11], device='cuda:0')
+
+Iteration:  98%|█████████▊| 57/58 [00:20<00:00,  2.10it/s][A
+Iteration: 100%|██████████| 58/58 [00:20<00:00,  2.71it/s][A05/01/2024 15:52:17 - INFO - trainer.trainer_mod_2 - Epoch 18 finished. Took 20.2 seconds.
+Iteration: 100%|██████████| 58/58 [00:20<00:00,  2.87it/s]
+Epoch:  95%|█████████▌| 19/20 [06:16<00:19, 19.85s/it]
+Iteration:   0%|          | 0/58 [00:00<?, ?it/s][A
+Iteration:   2%|▏         | 1/58 [00:00<00:17,  3.19it/s][A
+Iteration:   3%|▎         | 2/58 [00:00<00:18,  3.02it/s][A
+Iteration:   5%|▌         | 3/58 [00:00<00:17,  3.10it/s][A
+Iteration:   7%|▋         | 4/58 [00:01<00:17,  3.13it/s][A
+Iteration:   9%|▊         | 5/58 [00:01<00:17,  3.09it/s][A
+Iteration:  10%|█         | 6/58 [00:01<00:17,  3.03it/s][A
+Iteration:  12%|█▏        | 7/58 [00:02<00:16,  3.00it/s][A
+Iteration:  14%|█▍        | 8/58 [00:02<00:15,  3.15it/s][A
+Iteration:  16%|█▌        | 9/58 [00:02<00:15,  3.17it/s][A
+Iteration:  17%|█▋        | 10/58 [00:03<00:16,  3.00it/s][A
+Iteration:  19%|█▉        | 11/58 [00:03<00:15,  3.04it/s][A
+Iteration:  21%|██        | 12/58 [00:03<00:14,  3.08it/s][A
+Iteration:  22%|██▏       | 13/58 [00:04<00:14,  3.12it/s][A
+Iteration:  24%|██▍       | 14/58 [00:04<00:13,  3.15it/s][A
+Iteration:  26%|██▌       | 15/58 [00:04<00:13,  3.16it/s][A
+Iteration:  28%|██▊       | 16/58 [00:05<00:12,  3.26it/s][A
+Iteration:  29%|██▉       | 17/58 [00:05<00:12,  3.16it/s][A
+Iteration:  31%|███       | 18/58 [00:05<00:12,  3.19it/s][A
+Iteration:  33%|███▎      | 19/58 [00:06<00:12,  3.21it/s][A
+Iteration:  34%|███▍      | 20/58 [00:06<00:11,  3.24it/s][A
+Iteration:  36%|███▌      | 21/58 [00:06<00:11,  3.22it/s][A
+Iteration:  38%|███▊      | 22/58 [00:07<00:11,  3.21it/s][A
+Iteration:  40%|███▉      | 23/58 [00:07<00:11,  3.11it/s][A
+Iteration:  41%|████▏     | 24/58 [00:07<00:10,  3.14it/s][A
+Iteration:  43%|████▎     | 25/58 [00:07<00:10,  3.15it/s][A
+Iteration:  45%|████▍     | 26/58 [00:08<00:10,  3.07it/s][A
+Iteration:  47%|████▋     | 27/58 [00:08<00:09,  3.10it/s][A
+Iteration:  48%|████▊     | 28/58 [00:08<00:09,  3.11it/s][A
+Iteration:  50%|█████     | 29/58 [00:09<00:09,  2.91it/s][A
+Iteration:  52%|█████▏    | 30/58 [00:09<00:09,  3.01it/s][A
+Iteration:  53%|█████▎    | 31/58 [00:10<00:09,  2.86it/s][A
+Iteration:  55%|█████▌    | 32/58 [00:10<00:08,  2.90it/s][A
+Iteration:  57%|█████▋    | 33/58 [00:10<00:08,  2.86it/s][A
+Iteration:  59%|█████▊    | 34/58 [00:11<00:08,  2.89it/s][A
+Iteration:  60%|██████    | 35/58 [00:11<00:07,  2.98it/s][A
+Iteration:  62%|██████▏   | 36/58 [00:11<00:07,  2.97it/s][A
+Iteration:  64%|██████▍   | 37/58 [00:12<00:06,  3.04it/s][A
+Iteration:  66%|██████▌   | 38/58 [00:12<00:06,  3.03it/s][A
+Iteration:  67%|██████▋   | 39/58 [00:12<00:06,  3.02it/s][A
+Iteration:  69%|██████▉   | 40/58 [00:13<00:05,  3.02it/s][A
+Iteration:  71%|███████   | 41/58 [00:13<00:05,  3.02it/s][A
+Iteration:  72%|███████▏  | 42/58 [00:13<00:05,  2.99it/s][A
+Iteration:  74%|███████▍  | 43/58 [00:14<00:04,  3.07it/s][A
+Iteration:  76%|███████▌  | 44/58 [00:14<00:04,  3.10it/s][A
+Iteration:  78%|███████▊  | 45/58 [00:14<00:04,  2.97it/s][A
+Iteration:  79%|███████▉  | 46/58 [00:15<00:04,  2.95it/s][A
+Iteration:  81%|████████  | 47/58 [00:15<00:03,  2.96it/s][A[INFO|trainer.py:570] 2024-05-01 15:52:33,619 >> The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence1, sentence2. If idx, sentence1, sentence2 are not expected by `CoFiBertForSequenceClassification.forward`,  you can safely ignore this message.
+05/01/2024 15:52:33 - INFO - trainer.trainer_mod_2 - ***** Running Evaluation *****
+05/01/2024 15:52:33 - INFO - trainer.trainer_mod_2 -   Num examples = 408
+05/01/2024 15:52:33 - INFO - trainer.trainer_mod_2 -   Batch size = 32
+
+
+Evaluation:   0%|          | 0/13 [00:00<?, ?it/s][A[A
+
+Evaluation:  23%|██▎       | 3/13 [00:00<00:00, 20.90it/s][A[A
+
+Evaluation:  46%|████▌     | 6/13 [00:00<00:00, 20.90it/s][A[A
+
+Evaluation:  69%|██████▉   | 9/13 [00:00<00:00, 20.90it/s][A[A
+
+Evaluation:  92%|█████████▏| 12/13 [00:00<00:00, 20.90it/s][A[AEvaluation: 100%|██████████| 13/13 [00:00<00:00, 21.30it/s]05/01/2024 15:52:34 - INFO - datasets.metric - Removing /scratch/network/hw8161/.cache/huggingface/metrics/glue/mrpc/default_experiment-1-0.arrow
+05/01/2024 15:52:34 - INFO - trainer.trainer_mod_2 - Evaluating: {'accuracy': 0.8676470588235294, 'f1': 0.9059233449477352, 'combined_score': 0.8867852018856324, 'eval_loss': 0.68566024, 'step': 1150}
+
+
+Iteration:  83%|████████▎ | 48/58 [00:16<00:05,  1.93it/s][A
+Iteration:  84%|████████▍ | 49/58 [00:16<00:04,  2.15it/s][A
+Iteration:  86%|████████▌ | 50/58 [00:16<00:03,  2.34it/s][A
+Iteration:  88%|████████▊ | 51/58 [00:17<00:02,  2.55it/s][A
+Iteration:  90%|████████▉ | 52/58 [00:17<00:02,  2.72it/s][A
+Iteration:  91%|█████████▏| 53/58 [00:17<00:01,  2.85it/s][A
+Iteration:  93%|█████████▎| 54/58 [00:18<00:01,  2.93it/s][A
+Iteration:  95%|█████████▍| 55/58 [00:18<00:00,  3.01it/s][A
+Iteration:  97%|█████████▋| 56/58 [00:18<00:00,  3.01it/s][A
+Iteration:  98%|█████████▊| 57/58 [00:19<00:00,  3.09it/s][A
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.76it/s][A05/01/2024 15:52:37 - INFO - trainer.trainer_mod_2 - Epoch 19 finished. Took 19.32 seconds.
+Iteration: 100%|██████████| 58/58 [00:19<00:00,  3.00it/s]
+Epoch: 100%|██████████| 20/20 [06:35<00:00, 19.69s/it]Epoch: 100%|██████████| 20/20 [06:35<00:00, 19.78s/it]
+[INFO|configuration_utils.py:439] 2024-05-01 15:52:37,257 >> Configuration saved in /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5/config.json
+[INFO|modeling_utils.py:1084] 2024-05-01 15:52:37,603 >> Model weights saved in /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5/pytorch_model.bin
+[INFO|tokenization_utils_base.py:2094] 2024-05-01 15:52:37,604 >> tokenizer config file saved in /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5/tokenizer_config.json
+[INFO|tokenization_utils_base.py:2100] 2024-05-01 15:52:37,604 >> Special tokens file saved in /scratch/network/hw8161/CoFiPruning/out/MRPC/CoFi_mod_2/MRPC_sparsity0.6/FT-lr3e-5/special_tokens_map.json
+05/01/2024 15:52:37 - INFO - __main__ - Training took 413.41 seconds.

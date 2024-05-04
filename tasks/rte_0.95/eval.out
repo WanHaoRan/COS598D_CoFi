@@ -1,0 +1,170 @@
+Sun Mar 24 00:30:16 EDT 2024
+Your job is running on node(s):
+adroit-h11g2
+Working directory:
+/scratch/network/hw8161/CoFiPruning/tasks/rte_0.95
+nvidia-smi output:
+Sun Mar 24 00:30:16 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 545.23.08              Driver Version: 545.23.08    CUDA Version: 12.3     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-PCIE-40GB          On  | 00000000:E3:00.0 Off |                    0 |
+| N/A   30C    P0              36W / 250W |      2MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+0.8 seconds for warmup
+Layer 0, heads 4 5 6 7 8 9 10 11 pruned.
+Layer 1, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 2, heads 3 4 5 6 7 8 9 10 11 pruned.
+Layer 3, heads 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 4, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 5, heads 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 6, heads 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 7, heads 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 8, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 9, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 10, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 11, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer: 0
+query: torch.Size([256, 766])
+key: torch.Size([256, 766])
+value: torch.Size([256, 766])
+output: torch.Size([766, 256])
+up: torch.Size([252, 766])
+down: torch.Size([766, 252])
+Layer: 1
+query: None
+key: None
+value: None
+output: None
+up: torch.Size([256, 766])
+down: torch.Size([766, 256])
+Layer: 2
+query: torch.Size([192, 766])
+key: torch.Size([192, 766])
+value: torch.Size([192, 766])
+output: torch.Size([766, 192])
+up: torch.Size([240, 766])
+down: torch.Size([766, 240])
+Layer: 3
+query: torch.Size([128, 766])
+key: torch.Size([128, 766])
+value: torch.Size([128, 766])
+output: torch.Size([766, 128])
+up: torch.Size([183, 766])
+down: torch.Size([766, 183])
+Layer: 4
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 5
+query: torch.Size([128, 766])
+key: torch.Size([128, 766])
+value: torch.Size([128, 766])
+output: torch.Size([766, 128])
+up None
+down None
+Layer: 6
+query: torch.Size([128, 766])
+key: torch.Size([128, 766])
+value: torch.Size([128, 766])
+output: torch.Size([766, 128])
+up None
+down None
+Layer: 7
+query: torch.Size([64, 766])
+key: torch.Size([64, 766])
+value: torch.Size([64, 766])
+output: torch.Size([766, 64])
+up None
+down None
+Layer: 8
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 9
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 10
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 11
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 0: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 1: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 2: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 3: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 4: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 5: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 6: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 7: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 8: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 9: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 10: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 11: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 12: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 13: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 14: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 15: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 16: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 17: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 18: There are 3 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: sentence1, sentence2, idx.
+Round 19: There are 3 batches in the dataset.
+Task: rte
+Model path: /scratch/network/hw8161/CoFiPruning/out/RTE/CoFi/RTE_sparsity0.95/FT-lr3e-5
+Model size: 4219707
+Sparsity: 0.95
+accuracy: 0.6318
+seconds/example: 0.000149
+

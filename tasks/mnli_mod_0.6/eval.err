@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "evaluation.py", line 240, in <module>
+    tokenizer = AutoTokenizer.from_pretrained(
+  File "/home/hw8161/.conda/envs/torch-env3.8/lib/python3.8/site-packages/transformers/models/auto/tokenization_auto.py", line 549, in from_pretrained
+    return tokenizer_class_py.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+  File "/home/hw8161/.conda/envs/torch-env3.8/lib/python3.8/site-packages/transformers/tokenization_utils_base.py", line 1772, in from_pretrained
+    raise EnvironmentError(
+OSError: Can't load tokenizer for '/scratch/network/hw8161/CoFiPruning/out/MNLI/CoFi_mod/MNLI_sparsity0.6/FT-lr3e-5'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/scratch/network/hw8161/CoFiPruning/out/MNLI/CoFi_mod/MNLI_sparsity0.6/FT-lr3e-5' is the correct path to a directory containing all relevant files for a BertTokenizer tokenizer.

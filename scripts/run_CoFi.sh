@@ -10,7 +10,7 @@
 glue_low=(MRPC RTE STSB CoLA)
 glue_high=(MNLI QQP QNLI SST2)
 
-proj_dir=.
+proj_dir=/scratch/network/hw8161/CoFiPruning
 
 code_dir=${proj_dir}
 

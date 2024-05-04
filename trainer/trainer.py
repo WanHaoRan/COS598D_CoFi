@@ -96,7 +96,7 @@ class CoFiTrainer(Trainer):
         self.additional_args = additional_args
 
         self.l0_module = l0_module
-        self.prepruning_finetune_steps = 100
+        self.prepruning_finetune_steps = 0 # 100 for pruning and 0 for fine tuning
         self.start_prune = False
 
         self.l0_optimizer = None
@@ -541,10 +541,11 @@ class CoFiTrainer(Trainer):
 
     def save_model(self, output_dir: Optional[str] = None):
         output_dir = output_dir if output_dir is not None else self.args.output_dir
-        torch.save(self.l0_module, os.path.join(output_dir, "l0_module.pt"))
-
-        zs = self.l0_module.forward(training=False)
-        torch.save(zs, os.path.join(output_dir, "zs.pt"))
+        
+        if(self.l0_module != None):
+            torch.save(self.l0_module, os.path.join(output_dir, "l0_module.pt"))
+            zs = self.l0_module.forward(training=False)
+            torch.save(zs, os.path.join(output_dir, "zs.pt"))
 
         self.model.save_pretrained(output_dir)
 

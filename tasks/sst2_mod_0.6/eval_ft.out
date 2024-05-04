@@ -1,0 +1,140 @@
+Sun Apr 28 16:36:46 EDT 2024
+Your job is running on node(s):
+adroit-h11g2
+Working directory:
+/scratch/network/hw8161/CoFiPruning/tasks/sst2_mod_0.6
+nvidia-smi output:
+Sun Apr 28 16:36:46 2024       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 545.23.08              Driver Version: 545.23.08    CUDA Version: 12.3     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-PCIE-40GB          On  | 00000000:17:00.0 Off |                    0 |
+| N/A   29C    P0              34W / 250W |      2MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+0.92 seconds for warmup
+Layer 0, heads  pruned.
+Layer 1, heads 7 8 9 10 11 pruned.
+Layer 2, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 3, heads 9 10 11 pruned.
+Layer 4, heads 8 9 10 11 pruned.
+Layer 5, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 6, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 7, heads 6 7 8 9 10 11 pruned.
+Layer 8, heads 10 11 pruned.
+Layer 9, heads 5 6 7 8 9 10 11 pruned.
+Layer 10, heads 0 1 2 3 4 5 6 7 8 9 10 11 pruned.
+Layer 11, heads 4 5 6 7 8 9 10 11 pruned.
+Layer: 0
+query: torch.Size([768, 764])
+key: torch.Size([768, 764])
+value: torch.Size([768, 764])
+output: torch.Size([764, 768])
+up: torch.Size([2994, 764])
+down: torch.Size([764, 2994])
+Layer: 1
+query: torch.Size([448, 764])
+key: torch.Size([448, 764])
+value: torch.Size([448, 764])
+output: torch.Size([764, 448])
+up: torch.Size([2329, 764])
+down: torch.Size([764, 2329])
+Layer: 2
+query: None
+key: None
+value: None
+output: None
+up: torch.Size([1694, 764])
+down: torch.Size([764, 1694])
+Layer: 3
+query: torch.Size([576, 764])
+key: torch.Size([576, 764])
+value: torch.Size([576, 764])
+output: torch.Size([764, 576])
+up: torch.Size([1377, 764])
+down: torch.Size([764, 1377])
+Layer: 4
+query: torch.Size([512, 764])
+key: torch.Size([512, 764])
+value: torch.Size([512, 764])
+output: torch.Size([764, 512])
+up: torch.Size([876, 764])
+down: torch.Size([764, 876])
+Layer: 5
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 6
+query: None
+key: None
+value: None
+output: None
+up: torch.Size([1005, 764])
+down: torch.Size([764, 1005])
+Layer: 7
+query: torch.Size([384, 764])
+key: torch.Size([384, 764])
+value: torch.Size([384, 764])
+output: torch.Size([764, 384])
+up: torch.Size([1233, 764])
+down: torch.Size([764, 1233])
+Layer: 8
+query: torch.Size([640, 764])
+key: torch.Size([640, 764])
+value: torch.Size([640, 764])
+output: torch.Size([764, 640])
+up: torch.Size([1193, 764])
+down: torch.Size([764, 1193])
+Layer: 9
+query: torch.Size([320, 764])
+key: torch.Size([320, 764])
+value: torch.Size([320, 764])
+output: torch.Size([764, 320])
+up None
+down None
+Layer: 10
+query: None
+key: None
+value: None
+output: None
+up None
+down None
+Layer: 11
+query: torch.Size([256, 764])
+key: torch.Size([256, 764])
+value: torch.Size([256, 764])
+output: torch.Size([764, 256])
+up: torch.Size([1319, 764])
+down: torch.Size([764, 1319])
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence.
+Round 0: There are 7 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence.
+Round 1: There are 7 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence.
+Round 2: There are 7 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence.
+Round 3: There are 7 batches in the dataset.
+The following columns in the evaluation set  don't have a corresponding argument in `CoFiBertForSequenceClassification.forward` and have been ignored: idx, sentence.
+Round 4: There are 7 batches in the dataset.
+Task: sst2
+Model path: /scratch/network/hw8161/CoFiPruning/out/SST2/CoFi_mod/SST2_sparsity0.6/FT-lr3e-5
+Model size: 33428608
+Sparsity: 0.607
+accuracy: 0.8131
+seconds/example: 0.001075
+
