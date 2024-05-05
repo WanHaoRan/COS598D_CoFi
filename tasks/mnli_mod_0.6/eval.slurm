@@ -20,4 +20,4 @@ nvidia-smi
 # pip install -r /u/hw8161/CoFiPruning/requirements.txt
 
 cd /scratch/network/hw8161/CoFiPruning/
-python evaluation.py MNLI /scratch/network/hw8161/CoFiPruning/out/MNLI/CoFi_mod/MNLI_sparsity0.6/FT-lr3e-5
+python evaluation.py MNLI /scratch/network/hw8161/CoFiPruning/out/MNLI/CoFi_mod/MNLI_sparsity0.6/
