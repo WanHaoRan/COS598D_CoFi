@@ -96,7 +96,7 @@ class CoFiTrainer(Trainer):
         self.additional_args = additional_args
 
         self.l0_module = l0_module
-        self.prepruning_finetune_steps = 0 # 100 for pruning and 0 for fine tuning
+        self.prepruning_finetune_steps = 100 # 100 for pruning and 0 for fine tuning
         self.start_prune = False
 
         self.l0_optimizer = None
